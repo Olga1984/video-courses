@@ -1,0 +1,8 @@
+<div class="container">
+  <app-list-item *ngFor="let item of courseList"
+                 [title]="item.title"
+                 [creationDate]="item.creationDate"
+                 [duration]="item.duration"
+                 [description]="item.description">
+  </app-list-item>
+</div>
