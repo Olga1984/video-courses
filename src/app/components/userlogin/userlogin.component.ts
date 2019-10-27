@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserEntity } from '../../interfaces/user-entity';
 
@@ -7,12 +7,11 @@ import { UserEntity } from '../../interfaces/user-entity';
   templateUrl: './userlogin.component.html',
   styleUrls: ['./userlogin.component.css']
 })
-export class UserloginComponent implements OnInit {
-  submitted = false;
-  loginForm: UserEntity;
-  constructor(private router: Router) { }
-
-  ngOnInit() {
+export class UserLoginComponent {
+  public loginForm: UserEntity;
+  private router: Router;
+  constructor(router: Router) {
+    this.router = router;
   }
   onSubmit() {
     this.loginForm = {
@@ -20,7 +19,6 @@ export class UserloginComponent implements OnInit {
       firstName: 'ivan',
       lastName: 'Ivanov'
     };
-    this.submitted = true;
   }
   login() {
     this.router.navigate(['/courses']);

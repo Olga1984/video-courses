@@ -10,14 +10,16 @@ import { map } from 'rxjs/internal/operators';
 })
 export class BreadcrumbsComponent implements OnInit {
 
-  breadcrumbs;
+  public breadcrumbs;
+  private activatedRoute: ActivatedRoute;
+  private router: Router;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router) { }
+  constructor(activatedRoute: ActivatedRoute, router: Router) {
+    this.activatedRoute = activatedRoute;
+    this.router = router;
+  }
 
-  ngOnInit() {
-
+  ngOnInit(): void {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .pipe(map(() => this.activatedRoute))
@@ -34,7 +36,5 @@ export class BreadcrumbsComponent implements OnInit {
           label
         });
       });
-
   }
-
 }

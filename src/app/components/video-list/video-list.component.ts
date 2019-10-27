@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Course} from '../../interfaces/course';
+// @ts-ignore
+import { CoursesList } from '../../constants/courses-list';
 
 @Component({
   selector: 'app-video-list',
@@ -7,23 +9,9 @@ import {Course} from '../../interfaces/course';
   styleUrls: ['./video-list.component.css']
 })
 export class VideoListComponent implements OnInit {
-  courseList: Array<Course>;
-  constructor() { }
+  public courseList: Array<Course>;
 
-  ngOnInit() {
-    this.courseList = [{
-      id: 0,
-      title: 'item 1',
-      creationDate: '21.02.2019',
-      duration: 30,
-      description: 'ghgf khw egf kwegqf kw2efg wfgwhf ghwjgfhgwhf'
-    },
-      {
-        id: 0,
-        title: 'item 2',
-        creationDate: '30.02.2018',
-        duration: 50,
-        description: 'ghgfkhweg fkwecgqfkw2efg wfgwhfg hwjgfhgwhf'
-      }];
+  ngOnInit(): void {
+    this.courseList = CoursesList;
   }
 }

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { UserloginComponent } from './components/userlogin/userlogin.component';
+import { UserLoginComponent } from './components/userlogin/userlogin.component';
 import { MainComponent } from './components/main/main.component';
 import { RouterModule, Routes } from '@angular/router';
 import {BreadcrumbsComponent} from './components/breadcrumbs/breadcrumbs.component';
@@ -18,12 +18,12 @@ import { TopHeaderComponent } from './components/top-header/top-header.component
 const appRoutes: Routes = [
   {
     path: 'login',
-    component: UserloginComponent,
+    component: UserLoginComponent,
     data: { breadcrumb: 'login' }
   },
   {
     path: 'logoff',
-    component: UserloginComponent,
+    component: UserLoginComponent,
     data: { breadcrumb: 'logoff' }
   },
   {
@@ -43,7 +43,7 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    UserloginComponent,
+    UserLoginComponent,
     MainComponent,
     BreadcrumbsComponent,
     LogoComponent,

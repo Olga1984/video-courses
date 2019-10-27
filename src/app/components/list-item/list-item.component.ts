@@ -1,22 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.css']
 })
-export class ListItemComponent implements OnInit {
+export class ListItemComponent {
   @Input()
-  title;
-  @Input()
-  creationDate;
-  @Input()
-  duration;
-  @Input()
-  description;
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  course;
 }
