@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
-    logText(value: string): void {
+  public textValue = 'initial value';
+
+  logText(value: string): void {
     console.log(`Text changed to '${value}`);
   }
 }

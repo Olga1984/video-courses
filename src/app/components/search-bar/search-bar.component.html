@@ -1,4 +1,5 @@
 <div>
-  <input #textbox type="text" placeholder="search"required >
+  <input #textbox type="text" [(ngModel)]="textValue" required >
   <button (click)="logText(textbox.value)">Search</button>
+  <p>Text ({{textValue}})</p>
 </div>

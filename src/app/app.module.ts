@@ -14,6 +14,7 @@ import { VideoListComponent } from './components/video-list/video-list.component
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { TopHeaderComponent } from './components/top-header/top-header.component';
 import { LoadMoreButtonComponent } from './components/load-more-button/load-more-button.component';
+import {FormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   {
@@ -54,6 +55,7 @@ const appRoutes: Routes = [
     LoadMoreButtonComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     RouterModule.forRoot(appRoutes),
   ],
