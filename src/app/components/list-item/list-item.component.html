@@ -1,16 +1,30 @@
-<div class="item-card">
-  <div>
-    {{course.title}}
+<div class="card">
+  <header class="header">
+    <div class="card-header">
+      <div class="header-items">
+        {{course.title}}
+      </div>
+      <div class="header-items">
+        <div class="item">
+          {{course.creationDate}}
+        </div>
+        <div class="item">
+          {{course.duration}}
+        </div>
+      </div>
+    </div>
+    <div class="description">
+      <div>
+        {{course.description}}
+      </div>
+    </div>
+  </header>
+  <div class="buttons">
+    <div>
+      <button>Edit</button>
+    </div>
+    <div>
+      <button (click)="deleteCourse()">Delete</button>
+    </div>
   </div>
-  <div>
-    {{course.creationDate}}
-  </div>
-  <div>
-    {{course.duration}}
-  </div>
-  <div>
-    {{course.description}}
-  </div>
-  <button>Edit</button>
-  <button>Delete</button>
 </div>

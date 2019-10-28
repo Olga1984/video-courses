@@ -1,5 +1,25 @@
-.item-card {
+.card {
+  display: flex;
   padding: 20px;
   border: 1px solid gray;
   margin: 5px 0;
+}
+.card .header {
+  width: 70%;
+}
+.card .buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 30%;
+}
+.card .card-header {
+  display: flex;
+  justify-content: space-between;
+}
+.card .card-header .header-items {
+  display: flex;
+}
+.card .card-header .header-items .item {
+  padding: 20px;
 }

@@ -13,7 +13,7 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { VideoListComponent } from './components/video-list/video-list.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { TopHeaderComponent } from './components/top-header/top-header.component';
-
+import { LoadMoreButtonComponent } from './components/load-more-button/load-more-button.component';
 
 const appRoutes: Routes = [
   {
@@ -50,7 +50,8 @@ const appRoutes: Routes = [
     SearchBarComponent,
     VideoListComponent,
     ListItemComponent,
-    TopHeaderComponent
+    TopHeaderComponent,
+    LoadMoreButtonComponent
   ],
   imports: [
     BrowserModule,

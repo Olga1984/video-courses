@@ -1,4 +1,4 @@
 <div>
-  <input type="text" placeholder="search">
-  <button>Search</button>
+  <input #textbox type="text" placeholder="search"required >
+  <button (click)="logText(textbox.value)">Search</button>
 </div>
