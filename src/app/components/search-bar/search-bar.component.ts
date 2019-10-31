@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
 export class SearchBarComponent {
   public textValue = 'initial value';
 
-  logText(value: string): void {
-    console.log(`Text changed to '${value}`);
+  public logText(value: string): string {
+      console.log(`Text changed to '${value}`);
+      return value;
   }
 }

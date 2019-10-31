@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class LoadMoreButtonComponent {
 
-  loadCourses() {
-    console.log('load courses');
+  public loadCourses(): void {
+      console.log('load courses');
   }
 }
