@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css']
 })
-export class SearchBarComponent implements OnInit {
+export class SearchBarComponent {
+  public textValue = 'initial value';
 
-  constructor() { }
-
-  ngOnInit() {
+  public logText(value: string): string {
+      console.log(`Text changed to '${value}`);
+      return value;
   }
-
 }

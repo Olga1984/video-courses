@@ -1,5 +1,5 @@
-export interface UserEntity {
-  id: number;
-  firstName: string;
-  lastName: string;
+export interface IUserEntity {
+    firstName: string;
+    id: number;
+    lastName: string;
 }

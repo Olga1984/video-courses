@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ICourse } from '../../interfaces/course';
 
 @Component({
   selector: 'app-list-item',
@@ -7,5 +8,11 @@ import { Component, Input } from '@angular/core';
 })
 export class ListItemComponent {
   @Input()
-  public course;
+  public course: ICourse;
+  @Output()
+  public deleted = new EventEmitter<string>();
+
+  public deleteCourse(): void {
+    this.deleted.emit(this.course.id);
+  }
 }

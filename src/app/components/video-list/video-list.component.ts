@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Course} from '../../interfaces/course';
+import { ICourse } from '../../interfaces/course';
+
 // @ts-ignore
 import { CoursesList } from '../../constants/courses-list';
 
@@ -9,9 +10,12 @@ import { CoursesList } from '../../constants/courses-list';
   styleUrls: ['./video-list.component.css']
 })
 export class VideoListComponent implements OnInit {
-  public courseList: Array<Course>;
+  public courseList: Array<ICourse>;
 
   ngOnInit(): void {
     this.courseList = CoursesList;
+  }
+  public showCourse(event: any): void {
+      console.log(event, 'course id in video courses component');
   }
 }

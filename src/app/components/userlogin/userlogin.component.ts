@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserEntity } from '../../interfaces/user-entity';
+import { IUserEntity } from '../../interfaces/user-entity';
 
 @Component({
   selector: 'app-userlogin',
@@ -8,19 +8,19 @@ import { UserEntity } from '../../interfaces/user-entity';
   styleUrls: ['./userlogin.component.css']
 })
 export class UserLoginComponent {
-  public loginForm: UserEntity;
+  public loginForm: IUserEntity;
   private router: Router;
   constructor(router: Router) {
     this.router = router;
   }
-  onSubmit() {
+  public onSubmit(): void {
     this.loginForm = {
       id: 1,
       firstName: 'ivan',
       lastName: 'Ivanov'
     };
   }
-  login() {
+  public login(): void {
     this.router.navigate(['/courses']);
   }
 }

@@ -1,8 +1,31 @@
-.top-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: black;
-  color: white;
+.header-content {
+  background-color: gray;
   height: 50%;
 }
+.top-header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   color: white;
+  height: 70px;
+  width: 1200px;
+  margin: 10px auto;
+ }
+.top-header .sign-section {
+  display: flex;
+  justify-content: space-between;
+}
+.top-header .sign-section a {
+  color: white;
+  display:flex;
+  align-items: center;
+  padding: 0 20px;
+}
+.top-header .sign-section i {
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: 0 20px;
+  background: url("../../../assets/pngguru.com-id-guxsw.png");
+}
+
