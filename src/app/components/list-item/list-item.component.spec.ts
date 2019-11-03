@@ -55,7 +55,7 @@ describe('ListItemComponent', () => {
         component.deleteCourse();
     });
 
-  it('should show course', () => {
+  it('should show correct course title', () => {
         testHostComponent.setInput(courseList);
         testHostFixture.detectChanges();
         expect(testHostFixture.nativeElement.querySelector('div.header-items').innerText).toEqual('What is Lorem Ipsum');
