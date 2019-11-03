@@ -22,4 +22,10 @@ describe('LoadMoreButtonComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should log message', () => {
+        const consoleSpy = spyOn(console, 'log');
+        component.loadCourses();
+        expect(consoleSpy).toHaveBeenCalled();
+    });
 });

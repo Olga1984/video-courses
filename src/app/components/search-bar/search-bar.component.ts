@@ -9,7 +9,7 @@ export class SearchBarComponent {
   public textValue = 'initial value';
 
   public logText(value: string): string {
-      console.log(`Text changed to '${value}`);
+      console.log(`Text changed to ${value}`);
       return value;
   }
 }

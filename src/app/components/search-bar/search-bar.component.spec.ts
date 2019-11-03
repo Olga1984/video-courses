@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchBarComponent } from './search-bar.component';
+import { FormsModule } from '@angular/forms';
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
@@ -8,6 +9,9 @@ describe('SearchBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+        imports: [
+            FormsModule
+        ],
       declarations: [ SearchBarComponent ]
     })
     .compileComponents();
@@ -22,4 +26,10 @@ describe('SearchBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should log message', () => {
+        const consoleSpy = spyOn(console, 'log');
+        component.logText('test');
+        expect(consoleSpy).toHaveBeenCalledWith('Text changed to test');
+    });
 });

@@ -15,7 +15,7 @@ export class VideoListComponent implements OnInit {
   ngOnInit(): void {
     this.courseList = CoursesList;
   }
-  public showCourse(event: any): void {
+  public showCourse(event: string): void {
       console.log(event, 'course id in video courses component');
   }
 }
