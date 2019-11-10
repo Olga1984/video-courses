@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-search-bar',
@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-bar.component.css']
 })
 export class SearchBarComponent {
-  public textValue = 'initial value';
+    public textValue = 'initial';
+    @Output() searchValue: EventEmitter<string> = new EventEmitter();
 
-  public logText(value: string): string {
-      console.log(`Text changed to ${value}`);
-      return value;
+    public logText(value: string): void {
+     this.searchValue.emit(value);
   }
 }

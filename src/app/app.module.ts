@@ -14,6 +14,10 @@ import { VideoListComponent } from './components/video-list/video-list.component
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { TopHeaderComponent } from './components/top-header/top-header.component';
 import { LoadMoreButtonComponent } from './components/load-more-button/load-more-button.component';
+import { BorderStyleDirective } from './directives/border-style/border-style.directive';
+import { DurationPipe } from './pipes/duration.pipe';
+import { OrderByPipe } from './pipes/order-by.pipe';
+import { FindCoursePipe } from './pipes/find-course.pipe';
 
 const appRoutes: Routes = [
   {
@@ -51,7 +55,11 @@ const appRoutes: Routes = [
     VideoListComponent,
     ListItemComponent,
     TopHeaderComponent,
-    LoadMoreButtonComponent
+    LoadMoreButtonComponent,
+    BorderStyleDirective,
+    DurationPipe,
+    OrderByPipe,
+    FindCoursePipe
   ],
   imports: [
     FormsModule,
