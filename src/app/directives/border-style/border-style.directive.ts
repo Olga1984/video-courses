@@ -1,26 +1,24 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appBorderStyle]'
 })
-export class BorderStyleDirective {
-    @Input()
-    public date: string;
+export class BorderStyleDirective implements OnInit {
+    @Input('appBorderStyle') public date: string;
 
-    constructor(private element: ElementRef<any>) {
-
+    constructor(private element: ElementRef,
+                private renderer: Renderer2) {}
+    ngOnInit(): void {
         const now = new Date();
-        // const courseCreationDate = new Date(this.date); Why this.date undefined???????
-
-        const courseCreationDate = new Date('11/09/2019'); // '12/09/2019' for blu; '07/09/2019' for default
+        const courseCreationDate = new Date(this.date);
         const differenceTime = now.getTime() - courseCreationDate.getTime();
         const differenceDay = differenceTime / (1000 * 3600 * 24);
 
         if (differenceDay >= 0 && differenceDay <= 14) {
-            this.element.nativeElement.style.borderColor = 'green';
+            this.renderer.setStyle(this.element.nativeElement, 'borderColor', 'green');
         }
         if (differenceDay < 0) {
-            this.element.nativeElement.style.borderColor = 'blue';
+            this.renderer.setStyle(this.element.nativeElement, 'borderColor', 'blue');
         }
     }
 }

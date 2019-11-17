@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class MainComponent {
     public search: string;
-    public handler(searchText: string): void {
+    public searchHandler(searchText: string): void {
         this.search = searchText;
     }
 }

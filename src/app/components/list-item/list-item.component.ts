@@ -10,7 +10,8 @@ export class ListItemComponent implements OnInit {
   @Input()
   public course: ICourse;
   @Output()
-  public deleted = new EventEmitter<string>();
+  public deleted: EventEmitter<string> = new EventEmitter();
+
   public creationDate: string;
 
   public deleteCourse(): void {

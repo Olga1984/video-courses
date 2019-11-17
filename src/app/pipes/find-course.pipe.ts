@@ -5,8 +5,7 @@ import { ICourse } from '../interfaces/course';
   name: 'findCourse'
 })
 export class FindCoursePipe implements PipeTransform {
-
-    transform(items: Array<ICourse>, searchText: string): Array<any> {
+    transform(items: Array<ICourse>, searchText: string): Array<ICourse> {
         if (!items) return [];
         if (!searchText) return items;
         searchText = searchText.toLowerCase();
