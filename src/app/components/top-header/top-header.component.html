@@ -1,12 +1,12 @@
 <div class="header-content">
 <div class="top-header">
   <app-logo></app-logo>
-  <nav class="sign-section">
+  <nav class="sign-section" *ngIf="isAuth">
     <a [routerLink]="'/login'">
       <i></i>
       <span>User Login</span>
     </a>
-    <a [routerLink]="'/logoff'">
+    <a [routerLink]="'/logoff'" (click)="logoff()">
       <i></i>
       <span>Log off</span>
     </a>

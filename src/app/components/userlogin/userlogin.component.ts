@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUserEntity } from '../../interfaces/user-entity';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'app-userlogin',
@@ -10,7 +11,7 @@ import { IUserEntity } from '../../interfaces/user-entity';
 export class UserLoginComponent {
   public loginForm: IUserEntity;
   private router: Router;
-  constructor(router: Router) {
+  constructor(private auth: AuthorizationService, router: Router) {
     this.router = router;
   }
   public onSubmit(): void {
@@ -21,6 +22,7 @@ export class UserLoginComponent {
     };
   }
   public login(): void {
+    this.auth.login();
     this.router.navigate(['/courses']);
   }
 }

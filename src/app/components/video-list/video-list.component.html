@@ -1,5 +1,5 @@
 <div class="container">
-  <app-list-item (deleted)="showCourse($event)"
+  <app-list-item (deleted)="removeCourse($event)"
                  *ngFor="let item of courseList | orderBy: '-creationDate'"
                  [course]="item"
   >

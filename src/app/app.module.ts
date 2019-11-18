@@ -18,6 +18,8 @@ import { BorderStyleDirective } from './directives/border-style/border-style.dir
 import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { FindCoursePipe } from './pipes/find-course.pipe';
+import { CoursesService } from './services/courses.service';
+import { AuthorizationService } from './services/authorization.service';
 
 const appRoutes: Routes = [
   {
@@ -66,7 +68,10 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+      CoursesService,
+      AuthorizationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
