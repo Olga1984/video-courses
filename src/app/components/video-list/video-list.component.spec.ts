@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VideoListComponent } from './video-list.component';
 import { ListItemComponentStub } from '../list-item/list-item.component.stub';
-import { OrderByStubPipe } from '../../pipes/order-by.pipe.stub';
+import { OrderByPipeStub } from '../../pipes/order-by.pipe.stub';
 
 describe('VideoListComponent', () => {
   let component: VideoListComponent;
@@ -13,7 +13,7 @@ describe('VideoListComponent', () => {
       declarations: [
           VideoListComponent,
           ListItemComponentStub,
-          OrderByStubPipe
+          OrderByPipeStub
       ]
     })
     .compileComponents();
@@ -29,10 +29,4 @@ describe('VideoListComponent', () => {
     component.search = 'test';
     expect(component).toBeTruthy();
   });
-
-  it('should log message', () => {
-      const consoleSpy = spyOn(console, 'log');
-      component.showCourse('1');
-      expect(consoleSpy).toHaveBeenCalled();
-    });
 });

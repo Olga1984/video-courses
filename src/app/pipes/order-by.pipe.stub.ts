@@ -4,7 +4,7 @@ import {ICourse} from '../interfaces/course';
 @Pipe({
   name: 'orderBy'
 })
-export class OrderByPipe implements PipeTransform {
+export class OrderByPipeStub implements PipeTransform {
     transform(value: Array<ICourse>, args?: string): Array<ICourse> {
         return value;
     }

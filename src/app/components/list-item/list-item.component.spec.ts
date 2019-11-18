@@ -3,9 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListItemComponent } from './list-item.component';
 import { ICourse } from '../../interfaces/course';
 import { Component } from '@angular/core';
-import {DurationPipe} from '../../pipes/duration.pipe';
-import {BorderStyleStubDirective} from '../../directives/border-style/border-style.directive. stub';
-import {DurationStubPipe} from '../../pipes/duration.pipe.stub';
+import { BorderStyleStubDirective } from '../../directives/border-style/border-style.directive. stub';
+import { DurationPipeStub } from '../../pipes/duration.pipe.stub';
 
 describe('ListItemComponent', () => {
   let component: ListItemComponent;
@@ -36,7 +35,7 @@ describe('ListItemComponent', () => {
           ListItemComponent,
           TestHostComponent,
           BorderStyleStubDirective,
-          DurationStubPipe
+          DurationPipeStub
       ]
     })
     .compileComponents();
