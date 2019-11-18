@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICourse } from '../../interfaces/course';
 
 @Component({
@@ -6,13 +6,18 @@ import { ICourse } from '../../interfaces/course';
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.css']
 })
-export class ListItemComponent {
+export class ListItemComponent implements OnInit {
   @Input()
   public course: ICourse;
   @Output()
-  public deleted = new EventEmitter<string>();
+  public deleted: EventEmitter<string> = new EventEmitter();
+
+  public creationDate: string;
 
   public deleteCourse(): void {
     this.deleted.emit(this.course.id);
+  }
+  ngOnInit(): void {
+      this.creationDate = this.course.creationDate;
   }
 }

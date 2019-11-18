@@ -27,9 +27,9 @@ describe('SearchBarComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should log message', () => {
-        const consoleSpy = spyOn(console, 'log');
-        component.logText('test');
-        expect(consoleSpy).toHaveBeenCalledWith('Text changed to test');
+  it('should emit value', () => {
+      const Spy = spyOn(component.searchValue, 'emit');
+      component.logText('test');
+      expect(Spy).toHaveBeenCalled();
     });
 });

@@ -1,10 +1,10 @@
 <main>
   <section class="content">
-    <app-search-bar></app-search-bar>
+    <app-search-bar (searchValue)="searchHandler($event)"></app-search-bar>
     <div class="add-course">
       <button>Add course</button>
     </div>
-    <app-video-list></app-video-list>
+    <app-video-list [search]="search"></app-video-list>
     <app-load-more-button></app-load-more-button>
   </section>
 </main>

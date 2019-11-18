@@ -4,6 +4,9 @@
   border: 1px solid gray;
   margin: 5px 0;
 }
+.popular {
+  background-color: lightpink;
+}
 .card .header {
   width: 70%;
 }
@@ -19,6 +22,11 @@
 }
 .card .card-header .header-items {
   display: flex;
+}
+.card .card-header .header-items .star {
+  width: 20px;
+  height: 20px;
+  background-image: url("../../../assets/star.png");
 }
 .card .card-header .header-items .item {
   padding: 20px;

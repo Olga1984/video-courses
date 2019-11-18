@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListItemComponent } from './list-item.component';
 import { ICourse } from '../../interfaces/course';
 import { Component } from '@angular/core';
+import { BorderStyleStubDirective } from '../../directives/border-style/border-style.directive. stub';
+import { DurationPipeStub } from '../../pipes/duration.pipe.stub';
 
 describe('ListItemComponent', () => {
   let component: ListItemComponent;
@@ -10,15 +12,17 @@ describe('ListItemComponent', () => {
   const course: ICourse = {
       id: '1',
       title: 'hello',
-      creationDate: 'tests',
+      creationDate: `${new Date()}`,
       duration: 1,
+      topRated: true,
       description: 'test'
   };
   const courseList = [{
         id: '0',
-        title: 'What is Lorem Ipsum',
-        creationDate: '21.02.2019',
+        title: 'What',
+        creationDate: `${new Date()}`,
         duration: 30,
+        topRated: false,
         description: 'Lorem Ipsum is Ipsum'
     }];
 
@@ -29,7 +33,9 @@ describe('ListItemComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
           ListItemComponent,
-          TestHostComponent
+          TestHostComponent,
+          BorderStyleStubDirective,
+          DurationPipeStub
       ]
     })
     .compileComponents();
@@ -39,6 +45,7 @@ describe('ListItemComponent', () => {
     fixture = TestBed.createComponent(ListItemComponent);
     component = fixture.componentInstance;
     component.course = course;
+    component.creationDate = '11/08/2019';
     fixture.detectChanges();
 
     testHostFixture = TestBed.createComponent(TestHostComponent);
@@ -55,10 +62,10 @@ describe('ListItemComponent', () => {
         component.deleteCourse();
     });
 
-  it('should show correct course title', () => {
+  it('should show correct upercased course title', () => {
         testHostComponent.setInput(courseList);
         testHostFixture.detectChanges();
-        expect(testHostFixture.nativeElement.querySelector('div.header-items').innerText).toEqual('What is Lorem Ipsum');
+        expect(testHostFixture.nativeElement.querySelector('div.header-items').innerText).toEqual('WHAT');
     });
 
   @Component({

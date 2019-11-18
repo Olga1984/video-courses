@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
+    public search: string;
+    public searchHandler(searchText: string): void {
+        this.search = searchText;
+    }
 }

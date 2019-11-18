@@ -1,15 +1,16 @@
-<div class="card">
+<div [appBorderStyle]="creationDate" class="card" [ngClass]="{popular:course.topRated}">
   <header class="header">
     <div class="card-header">
       <div class="header-items">
-        {{course.title}}
+        <span>{{course.title | uppercase}}</span>
+        <span *ngIf="course.topRated" class="star"></span>
       </div>
       <div class="header-items">
         <div class="item">
-          {{course.creationDate}}
+          {{course.creationDate | date}}
         </div>
         <div class="item">
-          {{course.duration}}
+          {{course.duration | duration}}
         </div>
       </div>
     </div>
