@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '../../services/authorization.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-top-header',
@@ -7,12 +8,19 @@ import { AuthorizationService } from '../../services/authorization.service';
   styleUrls: ['./top-header.component.css']
 })
 export class TopHeaderComponent implements OnInit {
-    public isAuth: boolean;
-    constructor(private auth: AuthorizationService) {}
+    public isAuth: boolean = true;
+    private router: Router;
+    constructor(private authorizationService: AuthorizationService, router: Router) {
+        this.router = router;
+    }
     ngOnInit(): void {
-        this.isAuth = this.auth.isAutenticated;
+        this.authorizationService.isAutenticated.subscribe((status: boolean) => {
+            this.isAuth = status;
+        });
     }
     public logoff(): void {
-       this.auth.logout();
+        this.router.navigate(['/logoff']);
+        this.authorizationService.isAutenticated.emit(false);
+        this.authorizationService.logout();
     }
 }

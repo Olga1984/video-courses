@@ -1,12 +1,22 @@
-import { TestBed } from '@angular/core/testing';
-
-import { CoursesService } from './courses.service';
+import { coursesList, CoursesService } from './courses.service';
 
 describe('CoursesService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+    let service: CoursesService;
 
-  it('should be created', () => {
-    const service: CoursesService = TestBed.get(CoursesService);
-    expect(service).toBeTruthy();
-  });
+    beforeEach(() => {
+        service = new CoursesService();
+    });
+
+    it('#removeCourse should delete course', () => {
+        expect(service.courses.length)
+            .toEqual(4);
+        service.removeCourse('3');
+        expect(service.courses.length)
+            .toEqual(3);
+    });
+
+    it('#ggetList should return array of courses', () => {
+        expect(service.getList())
+            .toEqual(coursesList);
+    });
 });

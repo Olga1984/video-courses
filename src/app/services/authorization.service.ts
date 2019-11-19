@@ -1,18 +1,16 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
-    public isAutenticated: boolean = true;
+    public isAutenticated: EventEmitter<boolean> = new EventEmitter();
 
     public login(): void {
-        this.isAutenticated = true;
         localStorage.setItem('user', JSON.stringify('mike'));
-        console.log('logged in successdfully');
+        console.log('logged in successfully');
     }
     public logout(): void {
-        this.isAutenticated = true;
         localStorage.removeItem('user');
         console.log('logged off');
     }

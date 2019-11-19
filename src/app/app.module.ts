@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { UserLoginComponent } from './components/userlogin/userlogin.component';
 import { MainComponent } from './components/main/main.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { LogoComponent } from './components/logo/logo.component';
@@ -20,6 +19,8 @@ import { OrderByPipe } from './pipes/order-by.pipe';
 import { FindCoursePipe } from './pipes/find-course.pipe';
 import { CoursesService } from './services/courses.service';
 import { AuthorizationService } from './services/authorization.service';
+import { UserLoginComponent } from './pages/userlogin/userlogin.component';
+import { LoginPageModule } from './pages/login-page.module';
 
 const appRoutes: Routes = [
   {
@@ -49,7 +50,6 @@ const appRoutes: Routes = [
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    UserLoginComponent,
     MainComponent,
     BreadcrumbsComponent,
     LogoComponent,
@@ -66,7 +66,8 @@ const appRoutes: Routes = [
   imports: [
     FormsModule,
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    LoginPageModule
   ],
   providers: [
       CoursesService,

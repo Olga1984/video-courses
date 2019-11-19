@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ICourse } from '../interfaces/course';
-const coursesList =  [
+export const coursesList =  [
     {
         id: '2',
         title: 'ahere can I get some',
@@ -38,16 +38,16 @@ const coursesList =  [
   providedIn: 'root'
 })
 export class CoursesService {
-
+    public courses:  Array<ICourse> = coursesList;
     public getList(): Array<ICourse> {
-        return coursesList;
+        return this.courses;
     }
     public createCourse(newItem: ICourse): Array<ICourse> {
-        coursesList.push(newItem);
+        this.courses.push(newItem);
         return coursesList;
     }
     public getCourse(id: string): ICourse {
-        return coursesList.filter((x) => x.id === id)[0];
+        return this.courses.filter((x) => x.id === id)[0];
     }
     public updateCourse(id, newItem: ICourse): Array<ICourse> {
         coursesList.forEach((element, index) => {
@@ -58,6 +58,7 @@ export class CoursesService {
         return coursesList;
     }
     public removeCourse(id: string): Array<ICourse> {
-        return coursesList.filter((item) => item.id !== id);
+        this.courses = coursesList.filter((item) => item.id !== id);
+        return this.courses;
     }
 }
