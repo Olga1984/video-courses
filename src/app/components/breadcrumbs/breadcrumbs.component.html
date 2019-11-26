@@ -1,4 +1,4 @@
-<nav aria-label='breadcrumb' *ngIf="isAuth">
+<nav aria-label='breadcrumb' *ngIf="isAuth | async">
   <ol class='breadcrumb'>
     <li *ngFor='let breadcrumb of breadcrumbs'>
       <a [routerLink]='[breadcrumb.label]' routerLinkActive='active'>{{ breadcrumb.label }}</a>

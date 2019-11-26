@@ -8,11 +8,9 @@ export class AuthorizationService {
 
     public login(): void {
         localStorage.setItem('user', JSON.stringify('mike'));
-        console.log('logged in successfully');
     }
     public logout(): void {
         localStorage.removeItem('user');
-        console.log('logged off');
     }
     public getUserInfo(): string {
         const user = localStorage.getItem('user');

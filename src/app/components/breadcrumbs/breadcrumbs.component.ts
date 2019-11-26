@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, PRIMARY_OUTLET } from '@angular/router';
-import { filter, takeUntil } from 'rxjs/operators';
+import {filter, takeUntil} from 'rxjs/operators';
 import { map } from 'rxjs/internal/operators';
-import { Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthorizationService } from '../../services/authorization.service';
   styleUrls: ['./breadcrumbs.component.css']
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
-  public isAuth: boolean = true;
+  public isAuth: Observable<boolean> = of(true);
   private unsubscribe$ = new Subject<void>();
   public breadcrumbs;
   private activatedRoute: ActivatedRoute;
@@ -25,18 +25,17 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     this.router = router;
   }
   ngOnInit(): void {
-      this.authorizationService.isAutenticated.subscribe((status: boolean) => {
-          this.isAuth = status;
-      });
-      if (this.isAuth) {
           this.router.events
-              .pipe(filter((event) => event instanceof NavigationEnd))
-              .pipe(map(() => this.activatedRoute))
-              .pipe(map((route) => {
-                  while (route.firstChild) { route = route.firstChild; }
-                  return route;
-              }))
-              .pipe(filter((route) => route.outlet === PRIMARY_OUTLET), takeUntil(this.unsubscribe$))
+              .pipe(
+                  takeUntil(this.unsubscribe$),
+                  filter((event) => event instanceof NavigationEnd),
+                  map(() => this.activatedRoute),
+                  map((route) => {
+                      while (route.firstChild) {
+                          route = route.firstChild;
+                      }
+                      return route;
+                  }))
               .subscribe((route) => {
                   this.breadcrumbs = [];
                   const routeData = route.snapshot.data;
@@ -45,7 +44,6 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                       label
                   });
               });
-      }
   }
   ngOnDestroy(): void {
     this.unsubscribe$.next();
