@@ -11,7 +11,7 @@ import { AuthorizationService } from '../../services/authorization.service';
   styleUrls: ['./breadcrumbs.component.css']
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
-  public isAuth$: Observable<boolean> = of(true);
+  public isAuth$: Observable<boolean>;
   private unsubscribe$ = new Subject<void>();
   public breadcrumbs;
   private activatedRoute: ActivatedRoute;
@@ -25,6 +25,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
     this.router = router;
   }
   ngOnInit(): void {
+      this.isAuth$ = of(this.authorizationService.autenticated());
           this.router.events
               .pipe(
                   takeUntil(this.unsubscribe$),
