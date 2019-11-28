@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd, PRIMARY_OUTLET } from '@angular/router';
-import {filter, takeUntil} from 'rxjs/operators';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { filter, takeUntil } from 'rxjs/operators';
 import { map } from 'rxjs/internal/operators';
 import { Observable, of, Subject } from 'rxjs';
 import { AuthorizationService } from '../../services/authorization.service';
@@ -11,7 +11,7 @@ import { AuthorizationService } from '../../services/authorization.service';
   styleUrls: ['./breadcrumbs.component.css']
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
-  public isAuth: Observable<boolean> = of(true);
+  public isAuth$: Observable<boolean> = of(true);
   private unsubscribe$ = new Subject<void>();
   public breadcrumbs;
   private activatedRoute: ActivatedRoute;
