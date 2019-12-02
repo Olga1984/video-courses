@@ -1,5 +1,5 @@
 import { FindCoursePipe } from './find-course.pipe';
-import { CoursesList } from '../constants/courses-list';
+import { coursesList } from '../services/courses.service';
 
 describe('FindCoursePipe', () => {
     let pipe: FindCoursePipe;
@@ -12,11 +12,11 @@ describe('FindCoursePipe', () => {
     });
 
     it('should return correct courses title containes "D"', () => {
-        const val = pipe.transform(CoursesList, 'D');
+        const val = pipe.transform(coursesList, 'D');
         expect(val[0].id).toBe('1');
     });
     it('should return correct courses title containes "bhat"', () => {
-        const val = pipe.transform(CoursesList, 'bhat');
+        const val = pipe.transform(coursesList, 'bhat');
         expect(val[0].id).toBe('0');
     });
 });

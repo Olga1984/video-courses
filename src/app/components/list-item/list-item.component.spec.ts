@@ -59,7 +59,7 @@ describe('ListItemComponent', () => {
 
   it('raises the deleted event when clicked', () => {
         component.deleted.subscribe((deleted: string) => expect(deleted).toBe(course.id));
-        component.deleteCourse();
+        component.deleteCourse('1');
     });
 
   it('should show correct upercased course title', () => {

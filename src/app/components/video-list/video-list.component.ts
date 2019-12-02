@@ -1,9 +1,9 @@
-import { Component, Input, OnChanges, OnInit} from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { ICourse } from '../../interfaces/course';
 
 // @ts-ignore
-import { CoursesList } from '../../constants/courses-list';
 import { FindCoursePipe } from '../../pipes/find-course.pipe';
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-video-list',
@@ -14,17 +14,20 @@ import { FindCoursePipe } from '../../pipes/find-course.pipe';
 export class VideoListComponent implements OnInit, OnChanges {
   @Input() search: string;
   public courseList: Array<ICourse>;
-  constructor(private filterPipe: FindCoursePipe) {
+  constructor(private coursesService: CoursesService, private filterPipe: FindCoursePipe) {
   }
 
   ngOnInit(): void {
-    this.courseList = CoursesList;
+    this.courseList = this.coursesService.getList();
   }
-  public showCourse(event: string): void {
-      console.log(event, 'course id in video courses component');
+  public removeCourse(id: string): void {
+      const agrement = prompt('Do you really want to delete this course?');
+      if (agrement) {
+          this.courseList = this.coursesService.removeCourse(id);
+      }
   }
 
   ngOnChanges(): void {
-        this.courseList = this.filterPipe.transform(CoursesList, this.search);
+        this.courseList = this.filterPipe.transform(this.coursesService.getList(), this.search);
   }
 }

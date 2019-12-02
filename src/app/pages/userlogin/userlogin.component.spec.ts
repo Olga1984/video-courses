@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserLoginComponent } from './userlogin.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
-import { MainComponentStub } from '../main/main.component.stub';
+import { MainComponentStub } from '../../components/main/main.component.stub';
 
 describe('UserLoginComponent', () => {
   let component: UserLoginComponent;

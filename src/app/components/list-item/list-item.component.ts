@@ -11,11 +11,10 @@ export class ListItemComponent implements OnInit {
   public course: ICourse;
   @Output()
   public deleted: EventEmitter<string> = new EventEmitter();
-
   public creationDate: string;
 
-  public deleteCourse(): void {
-    this.deleted.emit(this.course.id);
+  public deleteCourse(id: string): void {
+    this.deleted.emit(id);
   }
   ngOnInit(): void {
       this.creationDate = this.course.creationDate;
