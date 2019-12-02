@@ -4,9 +4,9 @@ import { AuthorizationService } from '../../services/authorization.service';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './userlogin.component.html',
-  styleUrls: ['./userlogin.component.css']
+    selector: 'app-login-page',
+    templateUrl: './userlogin.component.html',
+    styleUrls: ['./userlogin.component.css']
 })
 export class UserLoginComponent {
     private submitted = false;
@@ -22,19 +22,11 @@ export class UserLoginComponent {
   constructor(private authorizationService: AuthorizationService, router: Router) {
     this.router = router;
   }
-    onSubmit(): void {
+    login(): void {
         this.submitted = true;
-        if (this.loginForm.invalid) {
-            return;
-        }
         this.success = true;
+        this.authorizationService.login();
+        this.authorizationService.isAutenticated.emit(true);
+        this.router.navigate(['/courses']);
     }
-
-  public login(): void {
-      this.authorizationService.login();
-      this.authorizationService.isAutenticated.emit(true);
-      if (this.success) {
-          this.router.navigate(['/courses']);
-      }
-  }
 }

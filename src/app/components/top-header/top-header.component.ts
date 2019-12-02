@@ -1,26 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthorizationService } from '../../services/authorization.service';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-top-header',
-  templateUrl: './top-header.component.html',
-  styleUrls: ['./top-header.component.css']
+    selector: 'app-top-header',
+    templateUrl: './top-header.component.html',
+    styleUrls: ['./top-header.component.css']
 })
-export class TopHeaderComponent implements OnInit {
-    public isAuth$: Observable<boolean>;
+export class TopHeaderComponent {
+    public isAuth$: Observable<boolean> = this.authorizationService.autenticated();
     private router: Router;
-    constructor(private authorizationService: AuthorizationService, router: Router) {
+    constructor(private authorizationService: AuthorizationService,
+                router: Router) {
         this.router = router;
     }
-    ngOnInit(): void {
-        this.isAuth$ = of(this.authorizationService.autenticated());
-    }
     public logoff(): void {
-        this.router.navigate(['/logoff']);
-        this.authorizationService.isAutenticated.emit(false);
         this.authorizationService.logout();
-        this.isAuth$ = of(this.authorizationService.autenticated());
+        this.isAuth$ = this.authorizationService.autenticated();
+        this.authorizationService.isAutenticated.emit(false);
+        this.router.navigate(['login']);
     }
 }

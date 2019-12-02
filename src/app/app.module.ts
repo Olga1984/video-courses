@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -23,25 +23,29 @@ import { UserLoginComponent } from './pages/userlogin/userlogin.component';
 import { LoginPageModule } from './pages/login-page.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CreateEditComponent } from './components/create-edit/create-edit.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
     {
-        path: 'logoff',
+        path: 'login',
         component: UserLoginComponent,
-        data: { breadcrumb: 'logoff' }
+        data: { breadcrumb: 'login' }
     },
     {
         path: 'courses',
         component: MainComponent,
+        canActivate: [AuthGuardService],
         data: { breadcrumb: 'courses' }
     },
     {
         path: 'courses/:id',
         component: CreateEditComponent,
+        canActivate: [AuthGuardService],
         data: { breadcrumb: 'courses/:id' }
     },
     {
         path: 'courses/new',
+        canActivate: [AuthGuardService],
         component: CreateEditComponent,
         data: { breadcrumb: 'courses/new' }
     },

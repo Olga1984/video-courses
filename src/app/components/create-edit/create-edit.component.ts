@@ -22,7 +22,7 @@ export class CreateEditComponent implements OnInit {
     private authors: FormControl = new FormControl('', []);
     private date: FormControl = new FormControl('', []);
 
-    courseForm: FormGroup = new FormGroup({
+   private courseForm: FormGroup = new FormGroup({
         title: this.title,
         description: this.description,
         duration: this.duration,
@@ -39,17 +39,17 @@ export class CreateEditComponent implements OnInit {
         });
     }
 
-    getCurrentDate(): void {
+    public getCurrentDate(): void {
         this.today = new Date();
     }
-    parseDate(dateString: string): Date {
+    public parseDate(dateString: string): Date {
         if (dateString) {
             return new Date(dateString);
         } else {
             return null;
         }
     }
-    onSubmit(): void {
+    public onSubmit(): void {
         this.submitted = true;
         if (this.courseForm.invalid) {
             return;
@@ -57,11 +57,11 @@ export class CreateEditComponent implements OnInit {
         this.success = true;
     }
 
-    reRouteToMainPage(url: string): void {
+    public reRouteToMainPage(url: string): void {
         this.router.navigate([url]);
     }
 
-    buildForm(): void {
+    private buildForm(): void {
         this.getCurrentDate();
         this.courseForm = this.formBuilder.group({
             title: this.title,
@@ -71,14 +71,18 @@ export class CreateEditComponent implements OnInit {
             date: this.date
         });
     }
-
+    private fillEditForm(): void {
+        if (this.courseId && this.courseId !== 'new') {
+            this.course = this.data.getCourse(this.courseId);
+            this.buildForm();
+            this.title.setValue(this.course.title);
+            this.description.setValue(this.course.description);
+            this.duration.setValue(this.course.duration);
+            this.date.setValue(this.course.creationDate);
+            this.authors.setValue('authors');
+        }
+    }
     ngOnInit(): void {
-        this.course = this.data.getCourse(this.courseId);
-        this.buildForm();
-        this.title.setValue(this.course.title);
-        this.description.setValue(this.course.description);
-        this.duration.setValue(this.course.duration);
-        this.date.setValue(this.course.creationDate);
-        this.authors.setValue('authors');
+        this.fillEditForm();
     }
 }
