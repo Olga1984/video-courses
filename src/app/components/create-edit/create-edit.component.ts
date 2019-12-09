@@ -1,26 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CoursesService } from '../../services/courses.service';
 import { ICourse } from '../../interfaces/course';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-create-edit',
   templateUrl: './create-edit.component.html',
   styleUrls: ['./create-edit.component.css']
 })
-export class CreateEditComponent implements OnInit {
+export class CreateEditComponent implements OnInit, OnDestroy {
     private today: Date;
     private submitted = false;
     private success = false;
     private courseId: string;
     private course: ICourse;
+    public subs: Subscription;
 
-    private title: FormControl = new FormControl('', []);
-    private description: FormControl = new FormControl('', []);
-    private duration: FormControl = new FormControl('', []);
-    private authors: FormControl = new FormControl('', []);
-    private date: FormControl = new FormControl('', []);
+    private title: FormControl;
+    private description: FormControl;
+    private duration: FormControl;
+    private authors: FormControl;
+    private date: FormControl;
 
    private courseForm: FormGroup = new FormGroup({
         title: this.title,
@@ -30,11 +32,19 @@ export class CreateEditComponent implements OnInit {
         date: this.date
     });
 
+    private initForm(): void  {
+    this.title = new FormControl('', []);
+    this.description = new FormControl('', []);
+    this.duration = new FormControl('', []);
+    this.authors = new FormControl('', []);
+    this.date = new FormControl('', []);
+}
+
     constructor(private route: ActivatedRoute,
                 private data: CoursesService,
                 private formBuilder: FormBuilder,
                 private router: Router) {
-        this.route.params.subscribe((params: Params) => {
+     this.subs = this.route.params.subscribe((params: Params) => {
             this.courseId = params.id;
         });
     }
@@ -82,7 +92,11 @@ export class CreateEditComponent implements OnInit {
             this.authors.setValue('authors');
         }
     }
-    ngOnInit(): void {
+    public ngOnInit(): void {
+        this.initForm();
         this.fillEditForm();
+    }
+    public ngOnDestroy(): void {
+        this.subs.unsubscribe();
     }
 }

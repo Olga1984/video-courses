@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { filter, switchMap, takeUntil } from 'rxjs/operators';
 import { map } from 'rxjs/internal/operators';
@@ -8,7 +8,8 @@ import { AuthorizationService } from '../../services/authorization.service';
 @Component({
     selector: 'app-breadcrumbs',
     templateUrl: './breadcrumbs.component.html',
-    styleUrls: ['./breadcrumbs.component.css']
+    styleUrls: ['./breadcrumbs.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
   public isAuth$: Observable<boolean> = this.authorizationService.autenticated();
