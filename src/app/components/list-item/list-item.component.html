@@ -21,11 +21,7 @@
     </div>
   </header>
   <div class="buttons">
-    <div>
-      <button>Edit</button>
-    </div>
-    <div>
-      <button (click)="deleteCourse(course.id)">Delete</button>
-    </div>
+    <button (click)="reRoute(course.id)" class="btn btn-info" title="edit article">Edit</button>
+    <button class="btn btn-danger" title="delete article" (click)="deleteCourse(course.id)">Delete</button>
   </div>
 </div>

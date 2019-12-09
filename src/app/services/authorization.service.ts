@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class AuthorizationService {
         const user = localStorage.getItem('user');
         return user;
     }
-    public autenticated(): boolean {
-        return this.isAuth;
+    public autenticated(): Observable<boolean> {
+        return of(this.isAuth);
     }
 }

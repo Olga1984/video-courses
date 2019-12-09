@@ -1,0 +1,32 @@
+<form [formGroup]="courseForm" (ngSubmit)="onSubmit()" style="display: flex; justify-content: center" class="form container" title.value=''>
+  <div>
+    <div class="form-group">
+      <label for="title">Title
+        <input formControlName="title" class="form-control" id="title" placeholder="Course Name">
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="description">Description
+        <textarea formControlName="description" class="form-control" id="description" placeholder="Description"></textarea>
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="duration">Duration
+        <input formControlName="duration" class="form-control" id="duration" placeholder="course Duration">
+        <span>{{course.duration | duration}}</span>
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="inputAuthors">Authors
+        <input formControlName="authors" class="form-control" id="inputAuthors" placeholder="authors" >
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="inputDate">Date
+        <input formControlName="date" class="form-control" id="inputDate" type="date" [value]="today | date:'yyyy-MM-dd'" (input)="today=parseDate($event.target.value)" />
+      </label>
+    </div>
+    <button [disabled]="courseForm.invalid" (click)="reRouteToMainPage('courses')" class="btn btn-success">Save</button>
+    <button (click)="reRouteToMainPage('courses')" class="btn btn-warning">Cancel</button>
+  </div>
+</form>

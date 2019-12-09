@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -21,58 +21,76 @@ import { CoursesService } from './services/courses.service';
 import { AuthorizationService } from './services/authorization.service';
 import { UserLoginComponent } from './pages/userlogin/userlogin.component';
 import { LoginPageModule } from './pages/login-page.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CreateEditComponent } from './components/create-edit/create-edit.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
-  {
-    path: 'login',
-    component: UserLoginComponent,
-    data: { breadcrumb: 'login' }
-  },
-  {
-    path: 'logoff',
-    component: UserLoginComponent,
-    data: { breadcrumb: 'logoff' }
-  },
-  {
-    path: 'courses',
-    component: MainComponent,
-    data: { breadcrumb: 'courses' }
-  },
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'courses'
-  }
+    {
+        path: 'login',
+        component: UserLoginComponent,
+        data: { breadcrumb: 'login' }
+    },
+    {
+        path: 'courses',
+        component: MainComponent,
+        canActivate: [AuthGuardService],
+        data: { breadcrumb: 'courses' }
+    },
+    {
+        path: 'courses/:id',
+        component: CreateEditComponent,
+        canActivate: [AuthGuardService],
+        data: { breadcrumb: 'courses/:id' }
+    },
+    {
+        path: 'courses/new',
+        canActivate: [AuthGuardService],
+        component: CreateEditComponent,
+        data: { breadcrumb: 'courses/new' }
+    },
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'courses'
+    },
+    {
+        path: '**',
+        component: NotFoundComponent
+    }
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    MainComponent,
-    BreadcrumbsComponent,
-    LogoComponent,
-    SearchBarComponent,
-    VideoListComponent,
-    ListItemComponent,
-    TopHeaderComponent,
-    LoadMoreButtonComponent,
-    BorderStyleDirective,
-    DurationPipe,
-    OrderByPipe,
-    FindCoursePipe
-  ],
-  imports: [
-    FormsModule,
-    BrowserModule,
-    RouterModule.forRoot(appRoutes),
-    LoginPageModule
-  ],
-  providers: [
-      CoursesService,
-      AuthorizationService
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        MainComponent,
+        BreadcrumbsComponent,
+        LogoComponent,
+        SearchBarComponent,
+        VideoListComponent,
+        ListItemComponent,
+        NotFoundComponent,
+        TopHeaderComponent,
+        LoadMoreButtonComponent,
+        BorderStyleDirective,
+        DurationPipe,
+        OrderByPipe,
+        FindCoursePipe,
+        CreateEditComponent
+    ],
+    imports: [
+        FormsModule,
+        BrowserModule,
+        RouterModule.forRoot(appRoutes),
+        LoginPageModule,
+        ReactiveFormsModule
+    ],
+    providers: [
+        CoursesService,
+        AuthorizationService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
