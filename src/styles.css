@@ -1,9 +1,0 @@
-html, body {
-  height: 100%;
-  margin: 0;
-}
-input, button {
-  padding: 0 20px;
-  height: 40px;
-  box-sizing: border-box;
-}
