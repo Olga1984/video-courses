@@ -1,0 +1,15 @@
+<div class="header-content">
+<div class="top-header">
+  <app-logo></app-logo>
+  <nav class="sign-section" *ngIf="isAuth$ | async">
+    <a href="#">
+      <i></i>
+      <span>User Login</span>
+    </a>
+    <a (click)="logoff()">
+      <i></i>
+      <span>Log off</span>
+    </a>
+  </nav>
+</div>
+</div>
