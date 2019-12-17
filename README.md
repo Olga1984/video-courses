@@ -15,6 +15,9 @@ go to server folder:
 `npm start`
 server works on `http://localhost:3004`
 
+#application require login credentials
+Please use 111111 as **login and password**
+or 222222 or 333333 
 
 #to test
 `ng test --code-coverage`

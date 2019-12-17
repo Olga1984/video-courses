@@ -8,27 +8,27 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainComponent } from './components/main/main.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { LogoComponent } from './components/logo/logo.component';
-import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { VideoListComponent } from './components/video-list/video-list.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
-import { TopHeaderComponent } from './components/top-header/top-header.component';
 import { BorderStyleDirective } from './directives/border-style/border-style.directive';
 import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { FindCoursePipe } from './pipes/find-course.pipe';
 import { CoursesService } from './services/courses.service';
-import { AuthorizationService } from './services/authorization.service';
-import { UserLoginComponent } from './pages/userlogin/userlogin.component';
 import { LoginPageModule } from './pages/login-page.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CreateEditComponent } from './components/create-edit/create-edit.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthenticationService } from './services/authentication.service';
+import { LoginComponent } from './pages/userlogin/login.component';
+import {UserService} from './services/user.service';
+import {SpinnerModule} from './components/spinner-container/spinner.module';
 
 const appRoutes: Routes = [
     {
         path: 'login',
-        component: UserLoginComponent,
+        component: LoginComponent,
         data: { breadcrumb: 'login' }
     },
     {
@@ -68,11 +68,9 @@ const appRoutes: Routes = [
         MainComponent,
         BreadcrumbsComponent,
         LogoComponent,
-        SearchBarComponent,
         VideoListComponent,
         ListItemComponent,
         NotFoundComponent,
-        TopHeaderComponent,
         BorderStyleDirective,
         DurationPipe,
         OrderByPipe,
@@ -86,10 +84,12 @@ const appRoutes: Routes = [
         LoginPageModule,
         ReactiveFormsModule,
         HttpClientModule,
+        SpinnerModule
     ],
     providers: [
         CoursesService,
-        AuthorizationService
+        AuthenticationService,
+        UserService
     ],
     bootstrap: [AppComponent]
 })

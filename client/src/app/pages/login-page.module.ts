@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserLoginComponent } from './userlogin/userlogin.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { LoginComponent } from './userlogin/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from '../services/auth.interceptor';
 
 @NgModule({
   declarations: [
-    UserLoginComponent
+    LoginComponent
   ],
   imports: [
     CommonModule,
       ReactiveFormsModule
   ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+    ],
   exports: [
-    UserLoginComponent
+    LoginComponent
   ]
 })
 export class LoginPageModule { }

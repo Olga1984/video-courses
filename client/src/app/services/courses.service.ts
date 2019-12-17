@@ -12,13 +12,8 @@ export class CoursesService {
     constructor(
         private httpClient: HttpClient) {
     }
-    public getList(amount: number): Observable<ICourse[]> {
-        return this.httpClient.get<ICourse[]>(`http://localhost:3004/courses?start=0&count=${amount}`)
-            .pipe(
-                map((response: any) => {
-                    return response;
-                })
-            );
+    public getList(page: number, amount: number): Observable<ICourse[]> {
+        return this.httpClient.get<ICourse[]>(`http://localhost:3004/courses?start=${page}&count=${amount}`)
     }
     public getCourse(id: string):Observable<ICourse>{
         return this.httpClient.get<ICourse>(`http://localhost:3004/courses/${id}`);

@@ -1,4 +1,5 @@
-<div class="container" *ngIf="courseList">
+<ct-spinner-container [show]="loading" size="medium">
+  <div class="container" *ngIf="courseList">
   <app-list-item (deleted)="removeCourse($event)"
                  *ngFor="let item of courseList | orderBy: '-date'"
                  [course]="item"
@@ -11,3 +12,4 @@
     <button (click)="loadCourses()">LOAD MORE</button>
   </div>
 </div>
+</ct-spinner-container>

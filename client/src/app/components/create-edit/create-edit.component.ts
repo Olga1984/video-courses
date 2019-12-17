@@ -74,7 +74,6 @@ export class CreateEditComponent implements OnInit, OnDestroy {
 
     public save(): void {
         if (this.courseId && this.courseId !== 'new') {
-            console.log(this.courseForm.value, 'this.courseForm.value');
             const subscription = this.coursesService.updateCourse(this.courseId, this.courseForm.value).subscribe(
                 (response) => console.log(response),
             );
