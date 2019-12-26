@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ICourse } from '../interfaces/course';
+import { Course } from '../interfaces/course';
 
 @Pipe({
   name: 'orderBy'
 })
 export class OrderByPipe implements PipeTransform {
-    transform(value: Array<ICourse>, args?: string): Array<ICourse> {
+    transform(value: Array<Course>, args?: string): Array<Course> {
         const direction = args[0][0];
         const column = args.replace('-', ''); // define asc or desc
         value.sort((a: any, b: any) => {

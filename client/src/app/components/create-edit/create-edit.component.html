@@ -1,4 +1,4 @@
-<form [formGroup]="courseForm" style="display: flex; justify-content: center" class="form container" name.value=''>
+<form [formGroup]="courseForm" class="form-container" name.value=''>
   <div>
     <div class="form-group">
       <label for="name">Title
@@ -23,7 +23,7 @@
     </div>
     <div class="form-group">
       <label for="inputDate">Date
-        <input formControlName="date" class="form-control" id="inputDate" type="date" [value]="today | date:'yyyy-MM-dd'" (input)="today=parseDate($event.target.value)" />
+        <input formControlName="date" class="form-control" id="inputDate" type="date" [value]="today | date:'yyyy-MM-dd'" (input)="today=parseDate($event.target.value)"/>
       </label>
     </div>
     <button type="submit" [disabled]="!courseForm.valid" (click)="save()" class="btn btn-success">Save</button>

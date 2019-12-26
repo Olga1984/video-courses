@@ -9,7 +9,7 @@ export class AuthenticationService {
     private currentUserSubject: BehaviorSubject<User>;
     public currentUser: Observable<User>;
 
-    constructor(private userService: UserService,) {
+    constructor(private userService: UserService) {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
@@ -18,19 +18,19 @@ export class AuthenticationService {
         return this.currentUserSubject.value;
     }
 
-    public login(username: string, password: string): Observable<User[]>{
+    public login(username: string, password: string): Observable<Array<User>> {
         return this.userService.getAll()
-            .pipe(map(users => {
+            .pipe(map((users) => {
                     users.forEach((item) => {
-                        if(item.login === username && item.password === password) {
+                        if (item.login === username && item.password === password) {
                             localStorage.setItem('currentUser', JSON.stringify(item));
                             this.currentUserSubject.next(item);
                         }
                     });
-                return users
+                    return users;
             }));
     }
-    public logout() :void {
+    public logout(): void {
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
     }

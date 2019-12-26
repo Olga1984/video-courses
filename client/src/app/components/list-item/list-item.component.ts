@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ICourse } from '../../interfaces/course';
+import { Course } from '../../interfaces/course';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ListItemComponent implements OnInit {
     @Input()
-    public course: ICourse;
+    public course: Course;
     @Output()
     public deleted: EventEmitter<string> = new EventEmitter();
     public creationDate: string;
@@ -20,11 +20,9 @@ export class ListItemComponent implements OnInit {
     ngOnInit(): void {
         this.creationDate = this.course.date;
     }
-
     public deleteCourse(id: string): void {
         this.deleted.emit(id);
     }
-
     public reRoute(id: string): void {
         this.router.navigate(['courses/', id ]);
     }

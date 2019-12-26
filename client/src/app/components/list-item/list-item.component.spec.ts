@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ListItemComponent } from './list-item.component';
-import { ICourse } from '../../interfaces/course';
+import { Course } from '../../interfaces/course';
 import { Component } from '@angular/core';
 import { BorderStyleStubDirective } from '../../directives/border-style/border-style.directive. stub';
 import { DurationPipeStub } from '../../pipes/duration.pipe.stub';
@@ -9,7 +9,7 @@ import { DurationPipeStub } from '../../pipes/duration.pipe.stub';
 describe('ListItemComponent', () => {
   let component: ListItemComponent;
   let fixture: ComponentFixture<ListItemComponent>;
-  const course: ICourse = {
+  const course: any = {
       id: '1',
       title: 'hello',
       creationDate: `${new Date()}`,
@@ -76,9 +76,9 @@ describe('ListItemComponent', () => {
                   </app-list-item>`
     })
     class TestHostComponent {
-        public courseList: Array<ICourse>;
+        public courseList: Array<Course>;
 
-        public setInput(newInput: Array<ICourse>): void {
+        public setInput(newInput: Array<Course>): void {
             this.courseList = newInput;
         }
     }

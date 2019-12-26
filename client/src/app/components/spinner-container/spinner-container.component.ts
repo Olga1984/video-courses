@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
-
 import { SpinnerSize } from './types/spinner-size';
+
 @Component({
-  selector: 'ct-spinner-container',
+  selector: 'app-spinner-container',
   templateUrl: './spinner-container.component.html',
   styleUrls: ['./spinner-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

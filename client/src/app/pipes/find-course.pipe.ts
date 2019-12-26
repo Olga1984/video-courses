@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ICourse } from '../interfaces/course';
+import { Course } from '../interfaces/course';
 
 @Pipe({
   name: 'findCourse'
 })
 export class FindCoursePipe implements PipeTransform {
-    transform(items: Array<ICourse>, searchText: string): Array<ICourse> {
+    transform(items: Array<Course>, searchText: string): Array<Course> {
         if (!items) return [];
         if (!searchText) return items;
         searchText = searchText.toLowerCase();

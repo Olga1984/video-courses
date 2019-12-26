@@ -9,6 +9,7 @@
       true,
       "generic"
     ],
+    "interface-name": [true, "never-prefix"],
     "ban": false,
     "import-spacing": false,
     "indent": [

@@ -22,8 +22,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthenticationService } from './services/authentication.service';
 import { LoginComponent } from './pages/userlogin/login.component';
-import {UserService} from './services/user.service';
-import {SpinnerModule} from './components/spinner-container/spinner.module';
+import { UserService } from './services/user.service';
+import { SpinnerModule } from './components/spinner-container/spinner.module';
 
 const appRoutes: Routes = [
     {
@@ -38,16 +38,16 @@ const appRoutes: Routes = [
         data: { breadcrumb: 'courses' }
     },
     {
-        path: 'courses/:id',
-        component: CreateEditComponent,
-        canActivate: [AuthGuardService],
-        data: { breadcrumb: 'courses/:id' }
-    },
-    {
         path: 'courses/new',
         canActivate: [AuthGuardService],
         component: CreateEditComponent,
         data: { breadcrumb: 'courses/new' }
+    },
+    {
+        path: 'courses/:id',
+        component: CreateEditComponent,
+        canActivate: [AuthGuardService],
+        data: { breadcrumb: 'courses/edit' }
     },
     {
         path: '',

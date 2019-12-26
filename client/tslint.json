@@ -1,36 +1,15 @@
 {
-  "extends": "tslint:recommended",
-  "rulesDirectory": [
+  "extends": [
     "codelyzer"
   ],
   "rules": {
-    "array-type": false,
-    "arrow-parens": false,
-    "deprecation": {
-      "severity": "warn"
-    },
-    "import-blacklist": [
-      true,
-      "rxjs/Rx"
-    ],
-    "interface-name": false,
+    "align": [true, "statements"],
+    "array-type": [true, "generic"],
+    "ban": false,
+    "import-spacing": false,
+    "indent": [true, "spaces", 4],
     "max-classes-per-file": false,
-    "max-line-length": [
-      true,
-      140
-    ],
-    "member-access": false,
-    "member-ordering": [
-      true,
-      {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
-        ]
-      }
-    ],
+    "no-any": false,
     "no-consecutive-blank-lines": false,
     "no-console": [
       true,
@@ -40,36 +19,70 @@
       "timeEnd",
       "trace"
     ],
-    "no-empty": false,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
+    "cyclomatic-complexity": true,
+    "no-constructor-vars": false,
+    "no-default-export": true,
+    "no-duplicate-variable": true,
+    "no-inferrable-types": false,
+    "no-require-imports": true,
+    "no-var-requires": true,
+    "prefer-const": [true, {
+      "destructuring": "all"
+    }],
+    "quotemark": [true, "single", "jsx-double"],
+    "semicolon": true,
+    "switch-default": false,
+    "trailing-comma": [true, {
+      "multiline": "never",
+      "singleline": "never"
+    }],
+    "typedef": [true,
+      "call-signature",
+      "property-declaration"
     ],
-    "no-non-null-assertion": true,
-    "no-redundant-jsdoc": true,
-    "no-switch-case-fall-through": true,
-    "no-use-before-declare": true,
-    "no-var-requires": false,
-    "object-literal-key-quotes": [
-      true,
-      "as-needed"
+    "whitespace": [true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-preblock",
+      "check-type-operator",
+      "check-separator",
+      "check-type",
+      "check-module"
     ],
-    "object-literal-sort-keys": false,
-    "ordered-imports": false,
-    "quotemark": [
+    "max-file-line-count": [true, 250],
+    "max-line-length": [
       true,
-      "single"
+      {
+        "limit": 140,
+        "ignore-pattern": "^import"
+      }
     ],
-    "trailing-comma": false,
-    "no-output-on-prefix": true,
-    "use-input-property-decorator": true,
-    "use-output-property-decorator": true,
-    "use-host-property-decorator": true,
-    "no-input-rename": true,
-    "no-output-rename": true,
-    "use-life-cycle-interface": true,
-    "use-pipe-transform-interface": true,
-    "component-class-suffix": true,
-    "directive-class-suffix": true
+    "newline-before-return": true,
+    "interface-over-type-literal": false,
+    "directive-selector": [true, "attribute", ["ng", "ct"], "camelCase"],
+    "component-selector": [true, "element", ["ct"], "kebab-case"],
+    "ordered-imports": [
+      true,
+      {
+        "grouped-imports": true
+      }
+    ],
+    "curly": [true, "ignore-same-line"],
+    "no-unnecessary-callback-wrapper": true,
+    "newline-per-chained-call": true,
+    "no-trailing-whitespace": true,
+    "no-magic-numbers": [true, -1, 0, 1, 2],
+    "member-access": true,
+    "member-ordering": [true, {
+      "order": "fields-first",
+      "alphabetize": false
+    }]
+  },
+  "linterOptions": {
+    "exclude": [
+      "**/*.json",
+      "**/*.stub.ts"
+    ]
   }
 }

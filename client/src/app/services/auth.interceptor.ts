@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {AuthenticationService} from './authentication.service';
-
-
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -11,7 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add header with token if available
-        let currentUser = this.authenticationService.currentUserValue;
+        const currentUser = this.authenticationService.currentUserValue;
         if (currentUser && currentUser.fakeToken) {
             request = request.clone({
                 setHeaders: {

@@ -4,7 +4,7 @@ import { SpinnerPosition } from '../../types/spinner-position';
 import { SpinnerSize } from '../../types/spinner-size';
 
 @Component({
-    selector: 'ct-spinner',
+    selector: 'app-spinner',
     templateUrl: './spinner.component.html',
     styleUrls: ['./spinner.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush

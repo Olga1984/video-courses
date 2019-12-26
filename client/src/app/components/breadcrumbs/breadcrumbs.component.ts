@@ -1,54 +1,45 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, NavigationEnd, PRIMARY_OUTLET} from '@angular/router';
-import { filter, takeUntil } from 'rxjs/operators';
-import { map } from 'rxjs/internal/operators';
-import { Subject } from 'rxjs';
-import {AuthenticationService} from '../../services/authentication.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd, PRIMARY_OUTLET } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { AuthenticationService } from '../../services/authentication.service';
 import { User } from '../../interfaces/user';
-
 
 @Component({
     selector: 'app-breadcrumbs',
     templateUrl: './breadcrumbs.component.html',
-    styleUrls: ['./breadcrumbs.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    styleUrls: ['./breadcrumbs.component.css']
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
   public currentUser: User;
-  private unsubscribe$ = new Subject<void>();
-  public breadcrumbs;
-  private activatedRoute: ActivatedRoute;
-  private router: Router;
+  public breadcrumbs: any;
+  public displayedBreadcrumbs: any;
+  public subs: Subscription;
 
   constructor(
       private authenticationService: AuthenticationService,
-              activatedRoute: ActivatedRoute,
-              router: Router)
-  {
-    this.activatedRoute = activatedRoute;
-    this.router = router;
-    this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
-  }
-    ngOnInit(): void {
-        this.router.events
-            .pipe(filter((event) => event instanceof NavigationEnd))
-            .pipe(map(() => this.activatedRoute))
-            .pipe(map((route) => {
-                while (route.firstChild) { route = route.firstChild; }
-                return route;
-            }))
-            .pipe(filter((route) => route.outlet === PRIMARY_OUTLET), takeUntil(this.unsubscribe$))
-            .subscribe((route) => {
-                this.breadcrumbs = [];
-                const routeData = route.snapshot.data;
-                const label = routeData.breadcrumb;
-                this.breadcrumbs.push({
-                    label
+      private activatedRoute: ActivatedRoute,
+      private router: Router) {}
+    public ngOnInit(): void {
+        this.subs = this.authenticationService.currentUser.subscribe((x) => this.currentUser = x);
+        const subscription = this.router.events
+                .pipe(filter((event) => event instanceof NavigationEnd),
+                    map(() => this.activatedRoute),
+                    map((route) => {
+                        while (route.firstChild) { route = route.firstChild; }
+                        return route;
+                    }),
+                    filter((route) => route.outlet === PRIMARY_OUTLET)
+                ).subscribe((route) => {
+                    this.breadcrumbs = [];
+                    const label = route.snapshot.data.breadcrumb;
+                    this.breadcrumbs.push({label});
+                    this.displayedBreadcrumbs = label;
                 });
-            });
+        this.subs.add(subscription);
     }
-    ngOnDestroy(): void {
-      this.unsubscribe$.next();
-      this.unsubscribe$.complete();
+    public ngOnDestroy(): void {
+        this.subs.unsubscribe();
   }
 }
