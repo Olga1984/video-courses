@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 /** @ignore */
 @Component({
-    selector: 'ct-spinner',
+    selector: 'app-spinner',
     template: ''
 })
 export class SpinnerComponentStub {
