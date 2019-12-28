@@ -42,10 +42,15 @@ export class VideoListComponent implements OnInit, OnDestroy {
           debounceTime(1000),
           distinctUntilChanged()
       ).subscribe((text: string) => {
-          this.coursesService.searchGetCall(text, 0, this.coursesCount).subscribe((res) => {
-              this.courseList = res;
-          }, (err) => {});
+          this.callSearchApi(text);
       });
+  }
+
+  public callSearchApi(text: string): void {
+      const subscription = this.coursesService.searchGetCall(text, 0, this.coursesCount).subscribe((res) => {
+          this.courseList = res;
+      }, (err) => {});
+      this.subsSearch.add(subscription);
   }
 
   public updateList(): void {
