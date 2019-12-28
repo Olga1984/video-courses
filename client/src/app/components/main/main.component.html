@@ -1,16 +1,5 @@
 <main>
   <section class="content">
-    <div>
-      <label>
-        <input type="text" #coursesSearchInput class="form-control"
-               placeholder="Type any course name" />
-      </label>
-    </div>
-    <div class="add-course">
-      <div class="form-group">
-        <button class=" form-control btn-dark" (click)="reRouteToCreatePage()">Add course</button>
-      </div>
-    </div>
-    <app-video-list [search]="apiResponse"></app-video-list>
+      <app-video-list></app-video-list>
   </section>
 </main>

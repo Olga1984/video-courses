@@ -1,3 +1,10 @@
+.add-course {
+    display: flex;
+    justify-content: flex-end;
+}
+.add-course button {
+    padding: 0 20px;
+}
 .load-more button {
     width: 100%;
 }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Course } from '../interfaces/course';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +25,11 @@ export class CoursesService {
     }
     public updateCourse(id, newItem: Course): Observable<Course> {
         return this.httpClient.put<Course>(`http://localhost:3004/courses/${id}`, newItem);
+    }
+    public searchGetCall(text: string, page: number, count: number): any {
+        if (text === '') {
+            return of([]);
+        }
+        return this.httpClient.get<Array<Course>>(`http://localhost:3004/courses?start=${page}&count=${count}&textFragment=${text}`);
     }
 }
