@@ -24,6 +24,13 @@ import { AuthenticationService } from './services/authentication.service';
 import { LoginComponent } from './pages/userlogin/login.component';
 import { UserService } from './services/user.service';
 import { SpinnerModule } from './components/spinner-container/spinner.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { TranslateModule } from '@ngx-translate/core';
+import { appReducers } from './state/app.reducer';
+import { AppEffects } from './state/app.effects';
 
 const appRoutes: Routes = [
     {
@@ -81,6 +88,11 @@ const appRoutes: Routes = [
         FormsModule,
         BrowserModule,
         RouterModule.forRoot(appRoutes),
+        TranslateModule.forRoot(),
+        StoreRouterConnectingModule.forRoot(),
+        StoreModule.forRoot(appReducers),
+        EffectsModule.forRoot([AppEffects]),
+        StoreDevtoolsModule.instrument(),
         LoginPageModule,
         ReactiveFormsModule,
         HttpClientModule,

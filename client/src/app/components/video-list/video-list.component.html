@@ -18,10 +18,10 @@
     </div>
   </ng-container>
   <ng-template #elseTemplate>
-    <app-spinner-container [show]="loading" size="medium">
+    <app-spinner-container [show]="loading$ | async" size="medium">
       <div class="container" *ngIf="courseList">
         <app-list-item (deleted)="removeCourse($event)"
-                       *ngFor="let item of courseList | orderBy: '-date'"
+                       *ngFor="let item of courseList | async"
                        [course]="item">
         </app-list-item>
         <div class="load-more">
