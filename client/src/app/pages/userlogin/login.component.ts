@@ -1,22 +1,25 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState, Credentials } from '../../state/app.state';
+import { LoginUserAction, SetCreadentialsAction } from './state/user.actions';
+import { UsersState } from './state/user.state';
 
 @Component({
     templateUrl: 'login.component.html',
-    styleUrls: ['login.component.css']
+    styleUrls: ['login.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
     public loading = false;
-    public subs: Subscription;
 
     private loginForm: FormGroup;
     private submitted = false;
 
     constructor(
+        private store$: Store<UsersState>,
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
@@ -43,19 +46,13 @@ export class LoginComponent implements OnInit, OnDestroy {
         if (this.loginForm.invalid) {
             return;
         }
-
-        this.loading = true;
-        this.subs = this.authenticationService.login(this.formControls.username.value, this.formControls.password.value)
-            .pipe(first())
-            .subscribe(
-                (data) => {
-                    this.router.navigate(['courses']);
-                },
-                (error) => {
-                    this.loading = false;
-                });
     }
-    public ngOnDestroy(): void {
-        this.subs.unsubscribe();
+    public login(): void {
+        const creds = {} as Credentials;
+        creds.username = this.formControls.username.value;
+        creds.password = this.formControls.password.value;
+
+        this.store$.dispatch(new SetCreadentialsAction(creds));
+        this.store$.dispatch(new LoginUserAction());
     }
 }

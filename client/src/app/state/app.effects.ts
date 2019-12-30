@@ -21,7 +21,6 @@ import { CoursesService } from '../services/courses.service';
 
 @Injectable()
 export class AppEffects {
-
     @Effect()
     loadCourses =
         this.actions$.pipe(

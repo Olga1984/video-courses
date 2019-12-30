@@ -1,4 +1,7 @@
 import { Action } from '@ngrx/store';
+import { User } from '../interfaces/user';
+import { Course } from '../interfaces/course';
+import { Credentials } from './app.state';
 
 export enum AppActionType {
     LoadCourses = '[app] LoadCourses',
@@ -7,11 +10,11 @@ export enum AppActionType {
     CoursesLoadSuccess = '[app] CoursesLoadSuccess',
     CoursesSetCount = '[app] CoursesSetCount',
     RemoveCourseById = '[app] RemoveCourseById',
-    SetRemoveCourseId = '[app] SetRemoveCourseId'
-}
-
-export class CoursesLoadFailAction implements Action {
-    readonly type = AppActionType.CoursesLoadFail;
+    SetRemoveCourseId = '[app] SetRemoveCourseId',
+    LoginUser = '[app] LoginUser',
+    UserLogout = '[app] UserLogout',
+    UserLoadSuccess = '[app] UserLoadSuccess',
+    SetCreadentials = '[app] SetCreadentials'
 }
 
 export class LoadCoursesAction implements Action {
@@ -25,13 +28,18 @@ export class SearchCoursesAction implements Action {
     ) {}
 }
 
+export class CoursesLoadFailAction implements Action {
+    readonly type = AppActionType.CoursesLoadFail;
+}
+
 export class CoursesLoadSuccessAction implements Action {
     readonly type = AppActionType.CoursesLoadSuccess;
 
     constructor(
-        public payload: any
+        public payload: Array<Course>
     ) { }
 }
+
 export class CoursesSetCountAction implements Action {
     readonly type = AppActionType.CoursesSetCount;
 

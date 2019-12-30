@@ -4,6 +4,11 @@ export interface AppState {
     courses: CoursesState;
 }
 
+export interface Credentials {
+    username: string;
+    password: string;
+}
+
 export interface CoursesState {
     loading: boolean;
     error: boolean;

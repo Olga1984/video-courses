@@ -1,32 +1,24 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { User } from '../../interfaces/user';
+import { Component } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { UserLogoutAction } from '../../pages/userlogin/state/user.actions';
+import { Store } from '@ngrx/store';
+import { UsersState } from '../../pages/userlogin/state/user.state';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
-  // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit, OnDestroy {
-    public currentUser: User;
-    public subs: Subscription;
-
+export class HeaderComponent {
     constructor(
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private store$: Store<UsersState>
     ) {}
-    public ngOnInit(): void {
-        this.subs = this.authenticationService.currentUser.subscribe((x) => this.currentUser = x);
-    }
 
     public logout(): void {
-        this.authenticationService.logout();
+        this.store$.dispatch(new UserLogoutAction());
         this.router.navigate(['/login']);
-    }
-    public ngOnDestroy(): void {
-        this.subs.unsubscribe();
     }
 }
