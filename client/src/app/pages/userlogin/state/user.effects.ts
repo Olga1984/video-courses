@@ -14,13 +14,12 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class UserEffects {
-    @Effect()
+    @Effect({dispatch: false})
     loginUserAction =
         this.actions$.pipe(
             ofType<UserAction>(UserActionType.LoginUser),
             withLatestFrom(this.store$.pipe(select(selectUserCreads))),
             map(([payload, user]) => {
-                console.log(user, 'user');
                 if (user.username && user.password) {
                     return this.authenticationService.login(user.username, user.password)
                         .pipe(first())
@@ -33,7 +32,7 @@ export class UserEffects {
             })
         );
 
-    @Effect()
+    @Effect({dispatch: false})
     UserLogOutAction =
         this.actions$
             .pipe(

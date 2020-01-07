@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Store } from '@ngrx/store';
-import { AppState, Credentials } from '../../state/app.state';
+import { Credentials } from '../../state/app.state';
 import { LoginUserAction, SetCreadentialsAction } from './state/user.actions';
 import { UsersState } from './state/user.state';
 
