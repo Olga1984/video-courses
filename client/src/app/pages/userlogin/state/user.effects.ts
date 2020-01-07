@@ -25,7 +25,6 @@ export class UserEffects {
                         .pipe(first())
                         .subscribe(
                             (data) => {
-                                window.location.reload();
                                 this.router.navigate(['courses']);
                             });
                 }

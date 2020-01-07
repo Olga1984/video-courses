@@ -4,6 +4,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CoursesService } from '../../services/courses.service';
 import { Course } from '../../interfaces/course';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState, FormValues } from '../../state/app.state';
+import { CoursesSaveAction, CoursesUpdateAction } from '../../state/app.actions';
 
 @Component({
   selector: 'app-create-edit',
@@ -27,11 +30,12 @@ export class CreateEditComponent implements OnInit, OnDestroy {
     constructor(private route: ActivatedRoute,
                 private coursesService: CoursesService,
                 private formBuilder: FormBuilder,
-                private router: Router) {}
+                private router: Router,
+                private store$: Store<AppState>) {}
 
     private initForm(): void  {
-    this.name = new FormControl('', [Validators.required]);
-    this.description = new FormControl('', [Validators.required]);
+    this.name = new FormControl('', Validators.maxLength(50));
+    this.description = new FormControl('', Validators.maxLength(500));
     this.length = new FormControl('', [Validators.required]);
     this.authors = new FormControl('', []);
     this.date = new FormControl('', [Validators.required]);
@@ -58,15 +62,16 @@ export class CreateEditComponent implements OnInit, OnDestroy {
         this.router.navigate(['courses']);
     }
     public save(): void {
+        const cousrseFormValues = {} as FormValues;
         if (this.courseId && this.courseId !== 'new') {
-            const subscription = this.coursesService.updateCourse(this.courseId, this.courseForm.value).subscribe();
-            this.subs.add(subscription);
+            cousrseFormValues.courseUpdateId = this.courseId;
+            cousrseFormValues.formValue = this.courseForm.value;
+            this.store$.dispatch(new CoursesUpdateAction(cousrseFormValues));
             this.router.navigate(['courses']);
         }
         if (this.courseId === 'new') {
-            const subscription = this.coursesService.createCourse(this.courseForm.value).subscribe();
-            console.log(this.courseForm.value, 'this.courseForm.value');
-            this.subs.add(subscription);
+            cousrseFormValues.formValue = this.courseForm.value;
+            this.store$.dispatch(new CoursesSaveAction(cousrseFormValues));
             this.router.navigate(['courses']);
         }
     }

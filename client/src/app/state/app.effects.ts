@@ -15,7 +15,7 @@ import {
     CoursesLoadFailAction,
     CoursesLoadSuccessAction, LoadCoursesAction
 } from './app.actions';
-import { selectCoursesParameters, selectRemovedId } from './app.selectors';
+import { selectCoursesParameters, selectFormValue, selectRemovedId } from './app.selectors';
 import { AppState } from './app.state';
 import { CoursesService } from '../services/courses.service';
 
@@ -47,6 +47,31 @@ export class AppEffects {
                 return new LoadCoursesAction();
             }),
             catchError((error) => of(new CoursesLoadFailAction()))
+        );
+
+    @Effect({dispatch: false})
+    updateCourseByIdAction =
+        this.actions$.pipe(
+            ofType<AppAction>(AppActionType.CoursesUpdate),
+            map((payload) => {
+                console.log(payload);
+                if (payload) {
+                    // @ts-ignore
+                    return this.coursesService.updateCourse(payload.courseUpdateId, payload.formValue);
+                }
+            })
+        );
+
+    @Effect({dispatch: false})
+    saveCourseAction =
+        this.actions$.pipe(
+            ofType<AppAction>(AppActionType.CoursesSave),
+            withLatestFrom(this.store$.pipe(select(selectFormValue))),
+            switchMap(([, val]) => {
+                if (val) {
+                    return of(this.coursesService.createCourse(val.formValue));
+                }
+            })
         );
 
     constructor(

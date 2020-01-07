@@ -30,6 +30,17 @@ export function coursesReducer(state: CoursesState = initialCoursesState, action
                 ...state,
                 count: action.payload
             };
+        case AppActionType.CoursesSave:
+            return {
+                ...state,
+                formValue: action.payload.formValue
+            };
+        case AppActionType.CoursesUpdate:
+            return {
+                ...state,
+                courseUpdateId: action.payload.courseUpdateId,
+                formValue: action.payload.formValue
+            };
         case AppActionType.SetRemoveCourseId:
             return {
                 ...state,

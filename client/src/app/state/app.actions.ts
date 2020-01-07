@@ -9,6 +9,8 @@ export enum AppActionType {
     CoursesLoadFail = '[app] CoursesLoadFail',
     CoursesLoadSuccess = '[app] CoursesLoadSuccess',
     CoursesSetCount = '[app] CoursesSetCount',
+    CoursesSave = '[app] CoursesSave',
+    CoursesUpdate = '[app] CoursesUpdate',
     RemoveCourseById = '[app] RemoveCourseById',
     SetRemoveCourseId = '[app] SetRemoveCourseId',
     LoginUser = '[app] LoginUser',
@@ -58,6 +60,20 @@ export class SetRemoveCourseIdAction implements Action {
         public payload: string
     ) {}
 }
+export class CoursesSaveAction implements Action {
+    readonly type = AppActionType.CoursesSave;
+
+    constructor(
+        public payload: any
+    ) { }
+}
+export class CoursesUpdateAction implements Action {
+    readonly type = AppActionType.CoursesUpdate;
+
+    constructor(
+        public payload: any
+    ) { }
+}
 
 export type AppAction = LoadCoursesAction |
     CoursesLoadFailAction |
@@ -65,4 +81,6 @@ export type AppAction = LoadCoursesAction |
     CoursesSetCountAction |
     RemoveCourseByIdAction |
     SetRemoveCourseIdAction |
-    SearchCoursesAction;
+    SearchCoursesAction |
+    CoursesSaveAction |
+    CoursesUpdateAction;
