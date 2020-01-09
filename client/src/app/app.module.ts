@@ -47,16 +47,16 @@ const appRoutes: Routes = [
         data: { breadcrumb: 'courses' }
     },
     {
-        path: 'courses/:id',
-        component: CreateEditComponent,
-        canActivate: [AuthGuardService],
-        data: { breadcrumb: 'courses/edit' }
-    },
-    {
         path: 'courses/new',
         canActivate: [AuthGuardService],
         component: CreateEditComponent,
         data: { breadcrumb: 'courses/new' }
+    },
+    {
+        path: 'courses/:id',
+        component: CreateEditComponent,
+        canActivate: [AuthGuardService],
+        data: { breadcrumb: 'courses/edit' }
     },
     {
         path: '',

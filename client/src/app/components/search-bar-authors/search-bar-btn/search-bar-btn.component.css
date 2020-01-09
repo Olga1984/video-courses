@@ -1,6 +1,10 @@
 button.search-bar-button {
-  box-sizing: border-box;
-  height: 17px;
-  width: 17px;
-  white-space: nowrap;
+  height: 10px;
+  width: 10px;
+}
+button.search-bar-button .close {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background: url("../../../../assets/exit.png");
 }

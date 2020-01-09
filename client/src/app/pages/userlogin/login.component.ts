@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
             return;
         }
     }
+
     public login(): void {
         const creds = {} as Credentials;
         creds.username = this.formControls.username.value;

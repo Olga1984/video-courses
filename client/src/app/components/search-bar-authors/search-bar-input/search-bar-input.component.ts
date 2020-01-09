@@ -28,6 +28,7 @@ export class SearchBarInputComponent implements OnInit {
     }
 
     public change(value: string): void {
+        console.log(value, 'value');
         this.inputSearch = value;
         this.inputChange.emit(this.inputSearch);
     }

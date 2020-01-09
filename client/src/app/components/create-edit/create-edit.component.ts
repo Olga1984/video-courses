@@ -16,6 +16,7 @@ import { CoursesSaveAction, CoursesUpdateAction } from '../../state/app.actions'
 })
 export class CreateEditComponent implements OnInit, OnDestroy {
     public subs: Subscription;
+    private submitted = false;
 
     private today: Date;
     private courseId: string;
@@ -34,10 +35,16 @@ export class CreateEditComponent implements OnInit, OnDestroy {
                 private store$: Store<AppState>) {}
 
     private initForm(): void  {
-    this.name = new FormControl('', Validators.maxLength(50));
-    this.description = new FormControl('', Validators.maxLength(500));
+    this.name = new FormControl('', [
+        Validators.required,
+        Validators.maxLength(50)
+    ]);
+    this.description = new FormControl('', [
+        Validators.required,
+        Validators.maxLength(500)
+    ]);
     this.length = new FormControl('', [Validators.required]);
-    this.authors = new FormControl('', []);
+    this.authors = new FormControl('', [Validators.required]);
     this.date = new FormControl('', [Validators.required]);
 
     this.courseForm = new FormGroup({
@@ -51,6 +58,11 @@ export class CreateEditComponent implements OnInit, OnDestroy {
     public setCurrentDate(): void {
         this.today = new Date();
     }
+
+    // getter for access to form fields
+    get formControls(): any {
+        return this.courseForm.controls; }
+
     public parseDate(dateString: string): Date {
         if (dateString) {
             return new Date(dateString);
@@ -94,7 +106,7 @@ export class CreateEditComponent implements OnInit, OnDestroy {
                 this.description.setValue(this.course.description);
                 this.length.setValue(this.course.length);
                 this.date.setValue(this.course.date);
-                this.authors.setValue('authors');
+                this.authors.setValue(this.course.authors);
             });
             this.subs.add(subscription);
         }
@@ -106,6 +118,15 @@ export class CreateEditComponent implements OnInit, OnDestroy {
          this.initForm();
          this.fillEditForm();
     }
+
+    public onSubmit(): any {
+        this.submitted = true;
+        // form is invalid
+        if (this.courseForm.invalid) {
+            return;
+        }
+    }
+
     public ngOnDestroy(): void {
         this.subs.unsubscribe();
     }
