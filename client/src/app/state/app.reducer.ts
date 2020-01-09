@@ -51,6 +51,22 @@ export function coursesReducer(state: CoursesState = initialCoursesState, action
                 ...state,
                 loading: false
             };
+        case AppActionType.SelectAuthor:
+            return {
+                ...state,
+                selectedAuthor: action.options ? { ...action.options } : null
+            };
+        case AppActionType.LoadAuthors:
+            return {
+                ...state,
+                areAuthorsLoading: true
+            };
+        case AppActionType.AuthorsLoaded:
+            return {
+                ...state,
+                areAuthorsLoading: false,
+                authors: action.options.map((service) => ({ ...service }))
+            };
         default:
             return state;
     }

@@ -22,3 +22,6 @@ export const selectFormParameters = createSelector(
     selectFormValue,
     (id, val) => ({id, val})
 );
+export const selectSelectedAuthor = createSelector(coursesfeatureSelector, (state: CoursesState) => state.selectedAuthor);
+export const selectAuthors = createSelector(coursesfeatureSelector, (state: CoursesState) => state.authors);
+export const selectAuthorsLoading = createSelector(coursesfeatureSelector, (state: CoursesState) => state.areAuthorsLoading);

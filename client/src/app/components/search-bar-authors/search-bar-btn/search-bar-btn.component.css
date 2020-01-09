@@ -1,0 +1,6 @@
+button.search-bar-button {
+  box-sizing: border-box;
+  height: 17px;
+  width: 17px;
+  white-space: nowrap;
+}

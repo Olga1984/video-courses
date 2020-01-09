@@ -1,4 +1,5 @@
 import { Course } from '../interfaces/course';
+import { Author } from '../interfaces/author';
 
 export interface AppState {
     courses: CoursesState;
@@ -24,6 +25,9 @@ export interface CoursesState {
     removedId: string;
     courseUpdateId: string;
     formValue: any;
+    selectedAuthor: Author;
+    authors: Array<Author>;
+    areAuthorsLoading: boolean;
 }
 
 export const initialCoursesState: CoursesState = {
@@ -35,7 +39,10 @@ export const initialCoursesState: CoursesState = {
     count: 4,
     removedId: '',
     courseUpdateId: '',
-    formValue: null
+    formValue: null,
+    selectedAuthor: null,
+    authors: [],
+    areAuthorsLoading: false
 };
 
 export const initialAppState: AppState = {

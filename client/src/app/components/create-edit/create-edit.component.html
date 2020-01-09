@@ -21,6 +21,7 @@
         <input formControlName="authors" class="form-control" id="inputAuthors" placeholder="authors" >
       </label>
     </div>
+    <app-services-search></app-services-search>
     <div class="form-group">
       <label for="inputDate">Date
         <input formControlName="date" class="form-control" id="inputDate" type="date" [value]="today | date:'yyyy-MM-dd'" (input)="today=parseDate($event.target.value)"/>

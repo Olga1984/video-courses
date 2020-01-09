@@ -13,7 +13,7 @@ import {
     AppAction,
     AppActionType,
     CoursesLoadFailAction,
-    CoursesLoadSuccessAction, LoadCoursesAction
+    CoursesLoadSuccessAction, LoadCoursesAction, AuthorsLoadedAction
 } from './app.actions';
 import { selectCoursesParameters, selectFormValue, selectRemovedId } from './app.selectors';
 import { AppState } from './app.state';
@@ -72,6 +72,12 @@ export class AppEffects {
                     return of(this.coursesService.createCourse(val.formValue));
                 }
             })
+        );
+    @Effect() loadAuthors = this.actions$
+        .pipe(ofType<AppAction>(AppActionType.LoadAuthors))
+        .pipe(
+            switchMap((action) => this.coursesService.getAuthors()),
+            map((result) => new AuthorsLoadedAction(result))
         );
 
     constructor(

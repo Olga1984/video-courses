@@ -1,7 +1,6 @@
 import { Action } from '@ngrx/store';
-import { User } from '../interfaces/user';
 import { Course } from '../interfaces/course';
-import { Credentials } from './app.state';
+import { Author } from '../interfaces/author';
 
 export enum AppActionType {
     LoadCourses = '[app] LoadCourses',
@@ -16,7 +15,10 @@ export enum AppActionType {
     LoginUser = '[app] LoginUser',
     UserLogout = '[app] UserLogout',
     UserLoadSuccess = '[app] UserLoadSuccess',
-    SetCreadentials = '[app] SetCreadentials'
+    SetCreadentials = '[app] SetCreadentials',
+    SelectAuthor = '[app] SelectAuthor',
+    LoadAuthors = '[app] LoadAuthorsAction',
+    AuthorsLoaded = '[app] AuthorsLoadedAction'
 }
 
 export class LoadCoursesAction implements Action {
@@ -74,6 +76,23 @@ export class CoursesUpdateAction implements Action {
         public payload: any
     ) { }
 }
+export class SelectAuthor implements Action {
+    readonly type = AppActionType.SelectAuthor;
+
+    constructor(public options: Author) { }
+}
+
+export class LoadAuthorsAction implements Action {
+    readonly type = AppActionType.LoadAuthors;
+
+    constructor() { }
+}
+
+export class AuthorsLoadedAction implements Action {
+    readonly type = AppActionType.AuthorsLoaded;
+
+    constructor(public options: Array<Author>) { }
+}
 
 export type AppAction = LoadCoursesAction |
     CoursesLoadFailAction |
@@ -83,4 +102,7 @@ export type AppAction = LoadCoursesAction |
     SetRemoveCourseIdAction |
     SearchCoursesAction |
     CoursesSaveAction |
-    CoursesUpdateAction;
+    CoursesUpdateAction |
+    SelectAuthor |
+    LoadAuthorsAction |
+    AuthorsLoadedAction;

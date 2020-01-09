@@ -1,0 +1,20 @@
+<div
+    class="authors-search-container">
+        <app-search-bar
+            [showEntitiesList]="areSuggestionOpened">
+            <app-search-bar-suggestions
+                searchSuggestions
+                [filteredSuggestions]="filteredAuthors"
+                (focusSuggestion)="focusSuggestion($event)"
+                (selectSuggestion)="selectAuthor($event.name)">
+            </app-search-bar-suggestions>
+
+            <app-search-bar-input
+                searchInput
+                [inputSearch]="value?.name"
+                (inputFocus)="focusInput($event)"
+                (inputChange)="applySearch($event)"
+                (inputSubmit)="selectAuthor($event)">
+            </app-search-bar-input>
+        </app-search-bar>
+</div>

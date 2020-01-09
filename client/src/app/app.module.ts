@@ -31,6 +31,8 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { TranslateModule } from '@ngx-translate/core';
 import { appReducers } from './state/app.reducer';
 import { AppEffects } from './state/app.effects';
+import { SearchBarModule } from './components/search-bar-authors/search-bar.module';
+import { AuthorsSearchComponent } from './components/search-bar-authors/services-search/services-search.component';
 
 const appRoutes: Routes = [
     {
@@ -82,7 +84,8 @@ const appRoutes: Routes = [
         DurationPipe,
         OrderByPipe,
         FindCoursePipe,
-        CreateEditComponent
+        CreateEditComponent,
+        AuthorsSearchComponent
     ],
     imports: [
         FormsModule,
@@ -96,7 +99,8 @@ const appRoutes: Routes = [
         LoginPageModule,
         ReactiveFormsModule,
         HttpClientModule,
-        SpinnerModule
+        SpinnerModule,
+        SearchBarModule
     ],
     providers: [
         CoursesService,

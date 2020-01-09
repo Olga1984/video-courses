@@ -1,0 +1,17 @@
+<label
+    [attr.for]="key"
+    class="search-bar-label">
+    {{label}}
+</label>
+<input
+    type="text"
+    class="input-search underline search-bar-input"
+    autocomplete="false"
+    [attr.id]="key"
+    [attr.placeholder]="placeholder || ''"
+    [attr.aria-label]="placeholder || ''"
+    [ngModel]="inputSearch"
+    (focus)="focus(true)"
+    (focusout)="focus(false)"
+    (keyup.enter)="submit()"
+    (ngModelChange)="change($event)"/>
