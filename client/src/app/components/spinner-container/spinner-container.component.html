@@ -1,0 +1,6 @@
+<div class="spinner-container">
+    <ng-content></ng-content>
+    <div class="spinner-wrapper" *ngIf="show">
+        <app-spinner [size]="size"></app-spinner>
+    </div>
+</div>

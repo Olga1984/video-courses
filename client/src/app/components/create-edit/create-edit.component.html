@@ -1,0 +1,32 @@
+<form [formGroup]="courseForm" class="form-container" name.value=''>
+  <div>
+    <div class="form-group">
+      <label for="name">Title
+        <input formControlName="name" class="form-control" id="name" placeholder="Course Name">
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="description">Description
+        <textarea formControlName="description" class="form-control" id="description" placeholder="Description"></textarea>
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="length">Duration
+        <input formControlName="length" class="form-control" id="length" placeholder="course Duration">
+        <span *ngIf="course">{{course.length | duration}}</span>
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="inputAuthors">Authors
+        <input formControlName="authors" class="form-control" id="inputAuthors" placeholder="authors" >
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="inputDate">Date
+        <input formControlName="date" class="form-control" id="inputDate" type="date" [value]="today | date:'yyyy-MM-dd'" (input)="today=parseDate($event.target.value)"/>
+      </label>
+    </div>
+    <button type="submit" [disabled]="!courseForm.valid" (click)="save()" class="btn btn-success">Save</button>
+    <button (click)="cancel()" class="btn btn-warning">Cancel</button>
+  </div>
+</form>

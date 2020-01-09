@@ -1,0 +1,88 @@
+{
+  "extends": [
+    "codelyzer"
+  ],
+  "rules": {
+    "align": [true, "statements"],
+    "array-type": [true, "generic"],
+    "ban": false,
+    "import-spacing": false,
+    "indent": [true, "spaces", 4],
+    "max-classes-per-file": false,
+    "no-any": false,
+    "no-consecutive-blank-lines": false,
+    "no-console": [
+      true,
+      "debug",
+      "info",
+      "time",
+      "timeEnd",
+      "trace"
+    ],
+    "cyclomatic-complexity": true,
+    "no-constructor-vars": false,
+    "no-default-export": true,
+    "no-duplicate-variable": true,
+    "no-inferrable-types": false,
+    "no-require-imports": true,
+    "no-var-requires": true,
+    "prefer-const": [true, {
+      "destructuring": "all"
+    }],
+    "quotemark": [true, "single", "jsx-double"],
+    "semicolon": true,
+    "switch-default": false,
+    "trailing-comma": [true, {
+      "multiline": "never",
+      "singleline": "never"
+    }],
+    "typedef": [true,
+      "call-signature",
+      "property-declaration"
+    ],
+    "whitespace": [true,
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-preblock",
+      "check-type-operator",
+      "check-separator",
+      "check-type",
+      "check-module"
+    ],
+    "max-file-line-count": [true, 250],
+    "max-line-length": [
+      true,
+      {
+        "limit": 140,
+        "ignore-pattern": "^import"
+      }
+    ],
+    "newline-before-return": true,
+    "interface-over-type-literal": false,
+    "directive-selector": [true, "attribute", ["ng", "ct"], "camelCase"],
+    "component-selector": [true, "element", ["ct"], "kebab-case"],
+    "ordered-imports": [
+      true,
+      {
+        "grouped-imports": true
+      }
+    ],
+    "curly": [true, "ignore-same-line"],
+    "no-unnecessary-callback-wrapper": true,
+    "newline-per-chained-call": true,
+    "no-trailing-whitespace": true,
+    "no-magic-numbers": [true, -1, 0, 1, 2],
+    "member-access": true,
+    "member-ordering": [true, {
+      "order": "fields-first",
+      "alphabetize": false
+    }]
+  },
+  "linterOptions": {
+    "exclude": [
+      "**/*.json",
+      "**/*.stub.ts"
+    ]
+  }
+}

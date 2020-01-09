@@ -1,0 +1,27 @@
+<div [appBorderStyle]="creationDate" class="card" [ngClass]="{popular:course.topRated}">
+  <header class="header">
+    <div class="card-header">
+      <div class="header-items">
+        <span>{{course.name | uppercase}}</span>
+        <span *ngIf="course.isTopRated" class="star"></span>
+      </div>
+      <div class="header-items">
+        <div class="item">
+          {{course.date | date}}
+        </div>
+        <div class="item">
+          {{course.length | duration}}
+        </div>
+      </div>
+    </div>
+    <div class="description">
+      <div>
+        {{course.description}}
+      </div>
+    </div>
+  </header>
+  <div class="buttons">
+    <button (click)="reRoute(course.id)" class="btn btn-info" title="edit article">Edit</button>
+    <button class="btn btn-danger" title="delete article" (click)="deleteCourse(course.id)">Delete</button>
+  </div>
+</div>

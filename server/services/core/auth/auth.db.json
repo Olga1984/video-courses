@@ -1,0 +1,34 @@
+{
+	"users": [
+  {
+    "id": 1,
+    "fakeToken": "58ebfdf7f1f558c5c86e17f6",
+    "name": {
+      "first": "Иван",
+      "last": "Иванов"
+    },
+    "login": "111111",
+    "password": "111111"
+  },
+  {
+    "id": 2,
+    "fakeToken": "58ebfdf7ec92657b493b24da",
+    "name": {
+      "first": "Петр",
+      "last": "Петров"
+    },
+    "login": "222222",
+    "password": "222222"
+  },
+      {
+        "id": 3,
+        "fakeToken": "58ebfdf7ec92657b493b24d7",
+        "name": {
+          "first": "Юлия",
+          "last": "Николаевна"
+        },
+        "login": "333333",
+        "password": "333333"
+      }
+]
+}
