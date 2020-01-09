@@ -32,7 +32,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { appReducers } from './state/app.reducer';
 import { AppEffects } from './state/app.effects';
 import { SearchBarModule } from './components/search-bar-authors/search-bar.module';
-import { AuthorsSearchComponent } from './components/search-bar-authors/services-search/services-search.component';
+import { AuthorsSearchComponent } from './components/search-bar-authors/services-search/authors-search.component';
 
 const appRoutes: Routes = [
     {

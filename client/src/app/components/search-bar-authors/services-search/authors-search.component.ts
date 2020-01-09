@@ -10,9 +10,9 @@ import { selectSelectedAuthor, selectAuthors, selectAuthorsLoading } from '../..
 import { Author, SearchEntity } from '../../../interfaces/author';
 
 @Component({
-  selector: 'app-services-search',
-  templateUrl: './services-search.component.html',
-  styleUrls: ['./services-search.component.css'],
+  selector: 'app-authors-search',
+  templateUrl: './authors-search.component.html',
+  styleUrls: ['./authors-search.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthorsSearchComponent implements OnInit, OnDestroy {

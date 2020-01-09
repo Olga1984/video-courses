@@ -1,16 +1,14 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd, PRIMARY_OUTLET } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication.service';
-import { User } from '../../interfaces/user';
 
 @Component({
     selector: 'app-breadcrumbs',
     templateUrl: './breadcrumbs.component.html',
     styleUrls: ['./breadcrumbs.component.css']
-    // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
   public breadcrumbs: any;
