@@ -25,6 +25,7 @@ export class CreateEditComponent implements OnInit, OnDestroy {
     private description: FormControl;
     private length: FormControl;
     private authors: FormControl;
+    private courseAuthors: any;
     private date: FormControl;
     private courseForm: FormGroup;
 
@@ -101,6 +102,7 @@ export class CreateEditComponent implements OnInit, OnDestroy {
         if (this.courseId && this.courseId !== 'new') {
             const subscription = this.coursesService.getCourse(this.courseId).subscribe((course) => {
                 this.course = course;
+                this.courseAuthors = course.authors;
                 this.buildForm();
                 this.name.setValue(this.course.name);
                 this.description.setValue(this.course.description);

@@ -33,6 +33,9 @@ import { appReducers } from './state/app.reducer';
 import { AppEffects } from './state/app.effects';
 import { SearchBarModule } from './components/search-bar-authors/search-bar.module';
 import { AuthorsSearchComponent } from './components/search-bar-authors/services-search/authors-search.component';
+import { AppDurationComponent } from './components/app-duration/app-duration.component';
+import { AppDateComponent } from './components/app-date/app-date.component';
+import { AppAuthorsComponent } from './components/app-authors/app-authors.component';
 
 const appRoutes: Routes = [
     {
@@ -85,7 +88,10 @@ const appRoutes: Routes = [
         OrderByPipe,
         FindCoursePipe,
         CreateEditComponent,
-        AuthorsSearchComponent
+        AuthorsSearchComponent,
+        AppDurationComponent,
+        AppDateComponent,
+        AppAuthorsComponent
     ],
     imports: [
         FormsModule,
