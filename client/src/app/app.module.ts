@@ -24,6 +24,18 @@ import { AuthenticationService } from './services/authentication.service';
 import { LoginComponent } from './pages/userlogin/login.component';
 import { UserService } from './services/user.service';
 import { SpinnerModule } from './components/spinner-container/spinner.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { TranslateModule } from '@ngx-translate/core';
+import { appReducers } from './state/app.reducer';
+import { AppEffects } from './state/app.effects';
+import { SearchBarModule } from './components/search-bar-authors/search-bar.module';
+import { AuthorsSearchComponent } from './components/search-bar-authors/services-search/authors-search.component';
+import { AppDurationComponent } from './components/app-duration/app-duration.component';
+import { AppDateComponent } from './components/app-date/app-date.component';
+import { AppAuthorsComponent } from './components/app-authors/app-authors.component';
 
 const appRoutes: Routes = [
     {
@@ -75,16 +87,26 @@ const appRoutes: Routes = [
         DurationPipe,
         OrderByPipe,
         FindCoursePipe,
-        CreateEditComponent
+        CreateEditComponent,
+        AuthorsSearchComponent,
+        AppDurationComponent,
+        AppDateComponent,
+        AppAuthorsComponent
     ],
     imports: [
         FormsModule,
         BrowserModule,
         RouterModule.forRoot(appRoutes),
+        TranslateModule.forRoot(),
+        StoreRouterConnectingModule.forRoot(),
+        StoreModule.forRoot(appReducers),
+        EffectsModule.forRoot([AppEffects]),
+        StoreDevtoolsModule.instrument(),
         LoginPageModule,
         ReactiveFormsModule,
         HttpClientModule,
-        SpinnerModule
+        SpinnerModule,
+        SearchBarModule
     ],
     providers: [
         CoursesService,

@@ -4,7 +4,6 @@ import { filter } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../../services/authentication.service';
-import { User } from '../../interfaces/user';
 
 @Component({
     selector: 'app-breadcrumbs',
@@ -12,7 +11,6 @@ import { User } from '../../interfaces/user';
     styleUrls: ['./breadcrumbs.component.css']
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
-  public currentUser: User;
   public breadcrumbs: any;
   public displayedBreadcrumbs: any;
   public subs: Subscription;
@@ -22,8 +20,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
       private activatedRoute: ActivatedRoute,
       private router: Router) {}
     public ngOnInit(): void {
-        this.subs = this.authenticationService.currentUser.subscribe((x) => this.currentUser = x);
-        const subscription = this.router.events
+        this.subs = this.router.events
                 .pipe(filter((event) => event instanceof NavigationEnd),
                     map(() => this.activatedRoute),
                     map((route) => {
@@ -37,7 +34,6 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
                     this.breadcrumbs.push({label});
                     this.displayedBreadcrumbs = label;
                 });
-        this.subs.add(subscription);
     }
     public ngOnDestroy(): void {
         this.subs.unsubscribe();

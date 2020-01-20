@@ -1,0 +1,15 @@
+<section class="searchbar-container">
+    <div class="searchbar-shell">
+        <div class="searchbar-box">
+            <div class="search-box">
+                <ng-content select=[searchInput]></ng-content>
+                <div *ngIf="showEntitiesList">
+                    <ng-content select=[searchSuggestions]></ng-content>
+                </div>
+            </div>
+        </div>
+        <div class="searchbar-btn">
+            <ng-content select=[searchButton]></ng-content>
+        </div>
+    </div>
+</section>

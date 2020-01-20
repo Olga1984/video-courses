@@ -1,0 +1,14 @@
+<div class="form-group" [formGroup]="parentFormGroup" >
+<label for="inputAuthors">Authors
+  <input *ngIf="!course" formControlName="authors" class="form-control" id="inputAuthors" placeholder="authors" [class.is-invalid]="formControls.authors.errors" >
+</label>
+  <ul *ngIf="course" class="form-authors">
+    <ng-container *ngIf="authors$ | async; let authors">
+      <li  class="form-control" *ngFor="let item of authors">
+        <span>{{item.name}} {{item?.lastName}}</span>
+        <app-search-bar-btn></app-search-bar-btn>
+      </li>
+    </ng-container>
+  </ul>
+</div>
+<app-authors-search></app-authors-search>

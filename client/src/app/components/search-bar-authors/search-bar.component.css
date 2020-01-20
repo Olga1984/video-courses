@@ -1,0 +1,21 @@
+.searchbar-shell {
+  display: flex;
+  padding: 0.15rem 0;
+  align-items: flex-end;
+}
+
+.searchbar-box {
+  flex: 1;
+}
+
+.searchbar-btn {
+  flex: 0 0;
+}
+
+.remove-border {
+  border: 0px;
+}
+
+.search-box {
+  position: relative;
+}

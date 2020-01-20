@@ -4,6 +4,9 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CoursesService } from '../../services/courses.service';
 import { Course } from '../../interfaces/course';
 import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState, FormValues } from '../../state/app.state';
+import { CoursesSaveAction, CoursesUpdateAction } from '../../state/app.actions';
 
 @Component({
   selector: 'app-create-edit',
@@ -13,6 +16,7 @@ import { Subscription } from 'rxjs';
 })
 export class CreateEditComponent implements OnInit, OnDestroy {
     public subs: Subscription;
+    private submitted = false;
 
     private today: Date;
     private courseId: string;
@@ -21,19 +25,27 @@ export class CreateEditComponent implements OnInit, OnDestroy {
     private description: FormControl;
     private length: FormControl;
     private authors: FormControl;
+    private courseAuthors: any;
     private date: FormControl;
     private courseForm: FormGroup;
 
     constructor(private route: ActivatedRoute,
                 private coursesService: CoursesService,
                 private formBuilder: FormBuilder,
-                private router: Router) {}
+                private router: Router,
+                private store$: Store<AppState>) {}
 
     private initForm(): void  {
-    this.name = new FormControl('', [Validators.required]);
-    this.description = new FormControl('', [Validators.required]);
+    this.name = new FormControl('', [
+        Validators.required,
+        Validators.maxLength(50)
+    ]);
+    this.description = new FormControl('', [
+        Validators.required,
+        Validators.maxLength(500)
+    ]);
     this.length = new FormControl('', [Validators.required]);
-    this.authors = new FormControl('', []);
+    this.authors = new FormControl('', [Validators.required]);
     this.date = new FormControl('', [Validators.required]);
 
     this.courseForm = new FormGroup({
@@ -47,6 +59,11 @@ export class CreateEditComponent implements OnInit, OnDestroy {
     public setCurrentDate(): void {
         this.today = new Date();
     }
+
+    // getter for access to form fields
+    get formControls(): any {
+        return this.courseForm.controls; }
+
     public parseDate(dateString: string): Date {
         if (dateString) {
             return new Date(dateString);
@@ -58,15 +75,16 @@ export class CreateEditComponent implements OnInit, OnDestroy {
         this.router.navigate(['courses']);
     }
     public save(): void {
+        const cousrseFormValues = {} as FormValues;
         if (this.courseId && this.courseId !== 'new') {
-            const subscription = this.coursesService.updateCourse(this.courseId, this.courseForm.value).subscribe();
-            this.subs.add(subscription);
+            cousrseFormValues.courseUpdateId = this.courseId;
+            cousrseFormValues.formValue = this.courseForm.value;
+            this.store$.dispatch(new CoursesUpdateAction(cousrseFormValues));
             this.router.navigate(['courses']);
         }
         if (this.courseId === 'new') {
-            const subscription = this.coursesService.createCourse(this.courseForm.value).subscribe();
-            console.log(this.courseForm.value, 'this.courseForm.value');
-            this.subs.add(subscription);
+            cousrseFormValues.formValue = this.courseForm.value;
+            this.store$.dispatch(new CoursesSaveAction(cousrseFormValues));
             this.router.navigate(['courses']);
         }
     }
@@ -84,12 +102,13 @@ export class CreateEditComponent implements OnInit, OnDestroy {
         if (this.courseId && this.courseId !== 'new') {
             const subscription = this.coursesService.getCourse(this.courseId).subscribe((course) => {
                 this.course = course;
+                this.courseAuthors = course.authors;
                 this.buildForm();
                 this.name.setValue(this.course.name);
                 this.description.setValue(this.course.description);
                 this.length.setValue(this.course.length);
                 this.date.setValue(this.course.date);
-                this.authors.setValue('authors');
+                this.authors.setValue(this.course.authors);
             });
             this.subs.add(subscription);
         }
@@ -101,6 +120,15 @@ export class CreateEditComponent implements OnInit, OnDestroy {
          this.initForm();
          this.fillEditForm();
     }
+
+    public onSubmit(): any {
+        this.submitted = true;
+        // form is invalid
+        if (this.courseForm.invalid) {
+            return;
+        }
+    }
+
     public ngOnDestroy(): void {
         this.subs.unsubscribe();
     }

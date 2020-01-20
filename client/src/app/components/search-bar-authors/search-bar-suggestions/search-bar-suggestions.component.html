@@ -1,0 +1,12 @@
+<div class="search-list-results" (focusout)="focusEntity(false)">
+    <div
+        tabindex="0"
+        *ngFor="let suggestionSelected of filteredSuggestions"
+        (focus)="focusEntity(true)"
+        (keydown.enter)="selectEntity(suggestionSelected)"
+        (mousedown)="selectEntity(suggestionSelected)">
+        <p class="list-items">
+            {{ suggestionSelected.name }}
+        </p>
+    </div>
+</div>

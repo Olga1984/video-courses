@@ -1,0 +1,5 @@
+<div class="form-group" [formGroup]="parentFormGroup">
+<label for="inputDate">Date
+  <input formControlName="date" class="form-control" id="inputDate" type="date" [value]="today | date:'yyyy-MM-dd'" (input)="today=parseDate($event.target.value)" [class.is-invalid]="formControls.date.errors">
+</label>
+</div>

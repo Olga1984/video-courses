@@ -1,3 +1,5 @@
+import { Author } from './author';
+
 export interface Course {
   id: string;
   name: string;
@@ -5,4 +7,5 @@ export interface Course {
   length: number;
   isTopRated: boolean;
   description: string;
+  authors: Author;
 }

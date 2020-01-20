@@ -2,7 +2,7 @@
   <div class="header-content">
     <div class="top-header">
       <app-logo></app-logo>
-      <nav class="sign-section" *ngIf="currentUser">
+      <nav class="sign-section" *ngIf="authenticationService.currentUser | async; let currentUser">
         <a href="#">
           <i class="user"></i>
           <span> Hi, {{currentUser.name.first}} {{currentUser.name.last}}</span>

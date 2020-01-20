@@ -1,0 +1,28 @@
+input.search-bar-input {
+  box-sizing: border-box;
+}
+input.search-bar-input.input-search {
+  border: 0px;
+  border-bottom: 1px solid lightblue;
+}
+input.search-bar-input:focus {
+  background-color: lightblue;
+  outline: none;
+}
+input.search-bar-input:focus.input-search.underline {
+  border-bottom: 1px solid black;
+}
+input.search-bar-input::placeholder {
+  transform: translate(-15px, 0);
+}
+input.search-bar-input:focus::placeholder {
+  color: transparent;
+}
+
+label.search-bar-label {
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  margin: 0.25rem 0;
+  height: 1.1rem;
+  min-width: 1px;
+}
